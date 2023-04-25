@@ -14,6 +14,8 @@
 		DC94D99929F7C47800C9745A /* Assignment2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D99829F7C47800C9745A /* Assignment2Tests.swift */; };
 		DC94D9A329F7C47800C9745A /* Assignment2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9A229F7C47800C9745A /* Assignment2UITests.swift */; };
 		DC94D9A529F7C47800C9745A /* Assignment2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9A429F7C47800C9745A /* Assignment2UITestsLaunchTests.swift */; };
+		DC94D9B629F7C5CC00C9745A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B429F7C5CC00C9745A /* DataModel.xcdatamodeld */; };
+		DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B729F7C60D00C9745A /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		DC94D99E29F7C47800C9745A /* Assignment2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC94D9A229F7C47800C9745A /* Assignment2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2UITests.swift; sourceTree = "<group>"; };
 		DC94D9A429F7C47800C9745A /* Assignment2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DC94D9B529F7C5CC00C9745A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		DC94D9B729F7C60D00C9745A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +98,8 @@
 		DC94D98629F7C47600C9745A /* Assignment2 */ = {
 			isa = PBXGroup;
 			children = (
-				DC94D98729F7C47600C9745A /* Assignment2App.swift */,
-				DC94D98929F7C47600C9745A /* ContentView.swift */,
+				DC94D9B229F7C59800C9745A /* View */,
+				DC94D9B129F7C58B00C9745A /* Data */,
 				DC94D98B29F7C47800C9745A /* Assets.xcassets */,
 				DC94D98D29F7C47800C9745A /* Preview Content */,
 			);
@@ -125,6 +129,32 @@
 				DC94D9A429F7C47800C9745A /* Assignment2UITestsLaunchTests.swift */,
 			);
 			path = Assignment2UITests;
+			sourceTree = "<group>";
+		};
+		DC94D9B129F7C58B00C9745A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DC94D9B429F7C5CC00C9745A /* DataModel.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DC94D9B229F7C59800C9745A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DC94D9B729F7C60D00C9745A /* Persistence.swift */,
+				DC94D9B329F7C5AA00C9745A /* Mainview */,
+				DC94D98729F7C47600C9745A /* Assignment2App.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DC94D9B329F7C5AA00C9745A /* Mainview */ = {
+			isa = PBXGroup;
+			children = (
+				DC94D98929F7C47600C9745A /* ContentView.swift */,
+			);
+			path = Mainview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +287,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC94D9B629F7C5CC00C9745A /* DataModel.xcdatamodeld in Sources */,
+				DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */,
 				DC94D98A29F7C47600C9745A /* ContentView.swift in Sources */,
 				DC94D98829F7C47600C9745A /* Assignment2App.swift in Sources */,
 			);
@@ -583,6 +615,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DC94D9B429F7C5CC00C9745A /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DC94D9B529F7C5CC00C9745A /* DataModel.xcdatamodel */,
+			);
+			currentVersion = DC94D9B529F7C5CC00C9745A /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DC94D97C29F7C47600C9745A /* Project object */;
 }
