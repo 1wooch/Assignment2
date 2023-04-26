@@ -19,14 +19,15 @@ struct ContentView: View {
                     ForEach(places){
                         place in
                         NavigationLink(destination: DetailView(place: place)){
-                            Text(place.name ?? "no name")
+                            RowView(place: place)
+                            //Text(place.name ?? "no name")
                         }
                     }
                 }
                 Button("+"){
                     addPlace()
                 }
-            }
+            }.navigationTitle("My Places")
         }
     }
     func addPlace(){

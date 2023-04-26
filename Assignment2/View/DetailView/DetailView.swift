@@ -15,6 +15,7 @@ struct DetailView: View {
     @State var longtitude=""
     @State var latitude=""
     @State var isEditing = false
+    @State var image = defaultImage
     var body: some View {
         VStack{
             if !isEditing{
@@ -23,7 +24,8 @@ struct DetailView: View {
                     Text("Detail: \(detail)")
                     Text("Longtitude: \(longtitude)")
                     Text("Letitude: \(latitude)")
-                    Text("Url: \(url) ")
+                    //Text("Url: \(url) ")
+                    image.scaledToFit().cornerRadius(20).shadow(radius: 20)
                 }
             }else{
                 List{
@@ -42,12 +44,15 @@ struct DetailView: View {
                         place.strDetail=detail
                         place.strLatitude=latitude
                         saveData()
+                        Task{
+                            image = await place.getImage()
+                        }
                         
                     }
                     isEditing.toggle()
-                    
                 }
             }
+           // image.scaledToFit().cornerRadius(20).shadow(radius: 20)
         }
         .navigationTitle("Place Detail")
         .onAppear{
@@ -57,6 +62,9 @@ struct DetailView: View {
             latitude=place.strLatitude
             url=place.strUrl
             
+        }
+        .task {
+            await image = place.getImage()
         }
     }
 }
