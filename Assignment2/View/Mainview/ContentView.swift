@@ -17,7 +17,10 @@ struct ContentView: View {
             VStack{
                 List{
                     ForEach(places){
-                        place in Text(place.name ?? "no name")
+                        place in
+                        NavigationLink(destination: DetailView(places: place)){
+                            Text(place.name ?? "no name")
+                        }
                     }
                 }
                 Button("+"){
