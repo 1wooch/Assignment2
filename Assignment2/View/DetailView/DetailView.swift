@@ -55,6 +55,10 @@ struct DetailView: View {
            // image.scaledToFit().cornerRadius(20).shadow(radius: 20)
         }
         .navigationTitle("Place Detail")
+        .navigationBarItems( trailing:VStack{
+            EditButton()
+        })
+
         .onAppear{
             name=place.strName
             detail=place.strDetail

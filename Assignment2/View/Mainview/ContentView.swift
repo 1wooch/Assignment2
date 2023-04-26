@@ -20,14 +20,16 @@ struct ContentView: View {
                         place in
                         NavigationLink(destination: DetailView(place: place)){
                             RowView(place: place)
-                            //Text(place.name ?? "no name")
                         }
-                    }
-                }
-                Button("+"){
-                    addPlace()
+                    }.onDelete(perform: removeItem)
                 }
             }.navigationTitle("My Places")
+                .navigationBarItems( trailing:VStack{
+                    Button("+"){
+                    addPlace()
+                }
+                }
+            )
         }
     }
     func addPlace(){
@@ -36,5 +38,13 @@ struct ContentView: View {
         place.detail=""
         saveData()
     }
+    func removeItem(offsets:IndexSet){
+        for index in offsets{
+            let place = places[index]
+            ctx.delete(place)
+            saveData()
+        }
+    }
+    
 }
 
