@@ -5,29 +5,25 @@
 //  Created by 최원우 on 25/4/2023.
 //
 
-import Foundation
 import CoreData
-
-struct PersistanceHandler{
-    static let shared = PersistanceHandler()
-    let container:NSPersistentContainer
-    
-    init(){
-        container = NSPersistentContainer(name: "Model")
-        container.loadPersistentStores {
-            _, error in if let err = error{
-                fatalError("Error to load with \(err)")
+struct PersistenceHandler {
+    static let shared = PersistenceHandler()
+    let container: NSPersistentContainer
+    init() {
+        container = NSPersistentContainer(name: "Coredata")
+        container.loadPersistentStores { _, error in
+            if let e = error {
+                fatalError("Error in load data \(e).")
             }
         }
     }
-    
 }
 
-func saveData(){
-    let ctx = PersistanceHandler.shared.container.viewContext
+func saveData() {
+    let ctx = PersistenceHandler.shared.container.viewContext
     do{
         try ctx.save()
-    }catch{
-        print("Error to save with \(error)")
+    } catch {
+        fatalError("Error in save data with \(error)")
     }
 }

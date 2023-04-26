@@ -6,16 +6,31 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var ctx
+    @FetchRequest(sortDescriptors: [])
+    var places:FetchedResults<Places>
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView{
+            VStack{
+                List{
+                    ForEach(places){
+                        place in Text(place.name ?? "no name")
+                    }
+                }
+                Button("+"){
+                    addPlace()
+                }
+            }
         }
-        .padding()
+    }
+    func addPlace(){
+        let place = Places(context:ctx)
+        place.name="New Place"
+        place.detail=""
+        saveData()
     }
 }
 
