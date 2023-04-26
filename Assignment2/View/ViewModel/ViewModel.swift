@@ -19,7 +19,7 @@ extension Places{
     
     var strDetail:String{
         get{
-            self.name ?? ""
+            self.detail ?? ""
         }set{
             self.detail=newValue
         }

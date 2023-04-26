@@ -18,7 +18,7 @@ struct ContentView: View {
                 List{
                     ForEach(places){
                         place in
-                        NavigationLink(destination: DetailView(places: place)){
+                        NavigationLink(destination: DetailView(place: place)){
                             Text(place.name ?? "no name")
                         }
                     }
