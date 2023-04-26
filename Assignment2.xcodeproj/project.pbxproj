@@ -16,6 +16,7 @@
 		DC94D9A529F7C47800C9745A /* Assignment2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9A429F7C47800C9745A /* Assignment2UITestsLaunchTests.swift */; };
 		DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B729F7C60D00C9745A /* Persistence.swift */; };
 		DC94D9BB29F908CD00C9745A /* Coredata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B929F908CD00C9745A /* Coredata.xcdatamodeld */; };
+		DC94D9BE29F917A600C9745A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9BD29F917A600C9745A /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		DC94D9A429F7C47800C9745A /* Assignment2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DC94D9B729F7C60D00C9745A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		DC94D9BA29F908CD00C9745A /* Coredata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Coredata.xcdatamodel; sourceTree = "<group>"; };
+		DC94D9BD29F917A600C9745A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		DC94D98629F7C47600C9745A /* Assignment2 */ = {
 			isa = PBXGroup;
 			children = (
+				DC94D98729F7C47600C9745A /* Assignment2App.swift */,
 				DC94D9B229F7C59800C9745A /* View */,
 				DC94D9B129F7C58B00C9745A /* Data */,
 				DC94D98B29F7C47800C9745A /* Assets.xcassets */,
@@ -134,6 +137,7 @@
 		DC94D9B129F7C58B00C9745A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				DC94D9B729F7C60D00C9745A /* Persistence.swift */,
 				DC94D9B929F908CD00C9745A /* Coredata.xcdatamodeld */,
 			);
 			path = Data;
@@ -142,9 +146,8 @@
 		DC94D9B229F7C59800C9745A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DC94D9B729F7C60D00C9745A /* Persistence.swift */,
+				DC94D9BC29F9177C00C9745A /* ViewModel */,
 				DC94D9B329F7C5AA00C9745A /* Mainview */,
-				DC94D98729F7C47600C9745A /* Assignment2App.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +158,14 @@
 				DC94D98929F7C47600C9745A /* ContentView.swift */,
 			);
 			path = Mainview;
+			sourceTree = "<group>";
+		};
+		DC94D9BC29F9177C00C9745A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DC94D9BD29F917A600C9745A /* ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC94D9BE29F917A600C9745A /* ViewModel.swift in Sources */,
 				DC94D9BB29F908CD00C9745A /* Coredata.xcdatamodeld in Sources */,
 				DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */,
 				DC94D98A29F7C47600C9745A /* ContentView.swift in Sources */,
