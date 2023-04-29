@@ -19,6 +19,11 @@
 		DC94D9BE29F917A600C9745A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9BD29F917A600C9745A /* ViewModel.swift */; };
 		DC94D9C529F9212900C9745A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9C429F9212900C9745A /* DetailView.swift */; };
 		DC94D9C729F959D700C9745A /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9C629F959D700C9745A /* RowView.swift */; };
+		DCA2205529FD907F004A3BD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98929F7C47600C9745A /* ContentView.swift */; };
+		DCA2205629FD9083004A3BD9 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9C629F959D700C9745A /* RowView.swift */; };
+		DCA2205729FD9085004A3BD9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9BD29F917A600C9745A /* ViewModel.swift */; };
+		DCA2205829FD9087004A3BD9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9C429F9212900C9745A /* DetailView.swift */; };
+		DCA2205929FD9093004A3BD9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B729F7C60D00C9745A /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +331,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA2205529FD907F004A3BD9 /* ContentView.swift in Sources */,
+				DCA2205629FD9083004A3BD9 /* RowView.swift in Sources */,
+				DCA2205729FD9085004A3BD9 /* ViewModel.swift in Sources */,
+				DCA2205929FD9093004A3BD9 /* Persistence.swift in Sources */,
+				DCA2205829FD9087004A3BD9 /* DetailView.swift in Sources */,
 				DC94D99929F7C47800C9745A /* Assignment2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

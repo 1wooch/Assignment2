@@ -10,11 +10,10 @@ import SwiftUI
 struct RowView: View {
     var place:Places
     @State var image = defaultImage
-    
-    var body: some View {
+   var body: some View {
         HStack{
             image.frame(width: 40, height: 40).clipShape(Circle())
-            Text(place.rowDisplay)
+            //Text("\(place.strName)")
         }.task{
             image=await place.getImage()
         }

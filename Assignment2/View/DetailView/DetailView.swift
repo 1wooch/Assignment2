@@ -36,27 +36,25 @@ struct DetailView: View {
                     TextField("Url:",text: $url)
                 }
             }
-            HStack{
-                Button("\(isEditing ? "Confirm":"Edit")"){
-                    if(isEditing){
-                        place.strName=name
-                        place.strUrl=url
-                        place.strDetail=detail
-                        place.strLatitude=latitude
-                        saveData()
-                        Task{
-                            image = await place.getImage()
-                        }
-                        
-                    }
-                    isEditing.toggle()
-                }
-            }
+//
            // image.scaledToFit().cornerRadius(20).shadow(radius: 20)
         }
         .navigationTitle("Place Detail")
         .navigationBarItems( trailing:VStack{
-            EditButton()
+            Button("\(isEditing ? "Confirm":"Edit")"){
+                if(isEditing){
+                    place.strName=name
+                    place.strUrl=url
+                    place.strDetail=detail
+                    place.strLatitude=latitude
+                    saveData()
+                    Task{
+                        image = await place.getImage()
+                    }
+                    
+                }
+                isEditing.toggle()
+            }
         })
 
         .onAppear{
@@ -66,6 +64,13 @@ struct DetailView: View {
             latitude=place.strLatitude
             url=place.strUrl
             
+        }.onDisappear(){
+            place.strName=name
+            place.strDetail=detail
+            place.strLatitude=latitude
+            place.strLatitude=latitude
+            place.strUrl=url
+            saveData()
         }
         .task {
             await image = place.getImage()

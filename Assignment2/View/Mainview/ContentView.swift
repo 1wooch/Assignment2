@@ -10,8 +10,10 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var ctx
-    @FetchRequest(sortDescriptors: [])
+    @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     var places:FetchedResults<Places>
+    @State var image = defaultImage
+
     var body: some View {
         NavigationView{
             VStack{
@@ -19,8 +21,13 @@ struct ContentView: View {
                     ForEach(places){
                         place in
                         NavigationLink(destination: DetailView(place: place)){
-                            RowView(place: place)
-                        }
+                            //RowView(place: place)
+                            
+                            HStack{
+                                //image.frame(width: 40, height: 40).clipShape(Circle())
+                                RowView(place: place)
+                                Text("\(place.strName)")
+                            }                       }
                     }.onDelete(perform: removeItem)
                 }
             }.navigationTitle("My Places")
