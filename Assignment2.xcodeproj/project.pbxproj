@@ -27,6 +27,7 @@
 		DCA2205B29FD9A9F004A3BD9 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = DCA2205A29FD9A9F004A3BD9 /* Readme.md */; };
 		DCA2205C29FE866A004A3BD9 /* Assignment2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98729F7C47600C9745A /* Assignment2App.swift */; };
 		DCA2205D29FE866F004A3BD9 /* Coredata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B929F908CD00C9745A /* Coredata.xcdatamodeld */; };
+		DCA2205F29FE8B90004A3BD9 /* searchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2205E29FE8B90004A3BD9 /* searchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		DC94D9C429F9212900C9745A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		DC94D9C629F959D700C9745A /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		DCA2205A29FD9A9F004A3BD9 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		DCA2205E29FE8B90004A3BD9 /* searchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			children = (
 				DC94D9C629F959D700C9745A /* RowView.swift */,
 				DC94D98929F7C47600C9745A /* ContentView.swift */,
+				DCA2205E29FE8B90004A3BD9 /* searchView.swift */,
 			);
 			path = Mainview;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				DC94D9C529F9212900C9745A /* DetailView.swift in Sources */,
 				DC94D9C729F959D700C9745A /* RowView.swift in Sources */,
 				DC94D9BB29F908CD00C9745A /* Coredata.xcdatamodeld in Sources */,
+				DCA2205F29FE8B90004A3BD9 /* searchView.swift in Sources */,
 				DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */,
 				DC94D98A29F7C47600C9745A /* ContentView.swift in Sources */,
 				DC94D98829F7C47600C9745A /* Assignment2App.swift in Sources */,

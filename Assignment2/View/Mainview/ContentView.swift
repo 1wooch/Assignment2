@@ -13,28 +13,55 @@ struct ContentView: View {
     @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     var places:FetchedResults<Places>
     @State var image = defaultImage
-
+    @State var isSearch = false
+    @State var placeName:String=""
     var body: some View {
         NavigationView{
             VStack{
-                List{
-                    ForEach(places){
-                        place in
-                        NavigationLink(destination: DetailView(place: place)){
-                            //RowView(place: place)
-                            
-                            HStack{
-                                //image.frame(width: 40, height: 40).clipShape(Circle())
-                                RowView(place: place)
-                                Text("\(place.strName)")
-                            }                       }
-                    }.onDelete(perform: removeItem)
+                if !isSearch{
+                    List{
+                        ForEach(places){
+                            place in
+                            NavigationLink(destination: DetailView(place: place)){
+                                //RowView(place: place)
+                                
+                                HStack{
+                                    //image.frame(width: 40, height: 40).clipShape(Circle())
+                                    RowView(place: place)
+                                    Text("\(place.strName)")
+                                }                       }
+                        }.onDelete(perform: removeItem)
+                    }
+                    
+                }
+                else{
+                    TextField("Place Name:",text: $placeName)
+                    NavigationLink("Search"){
+                        searchView(placeName: placeName, viewContext: ctx)
+                    }
+                    List{
+                        ForEach(places){
+                            place in
+                            NavigationLink(destination: DetailView(place: place)){
+                                //RowView(place: place)
+                                
+                                HStack{
+                                    //image.frame(width: 40, height: 40).clipShape(Circle())
+                                    RowView(place: place)
+                                    Text("\(place.strName)")
+                                }                       }
+                        }.onDelete(perform: removeItem)
+                    }
                 }
             }.navigationTitle("My Places")
-                .navigationBarItems( trailing:VStack{
+                .navigationBarItems( trailing:HStack{
                     Button("+"){
-                    addPlace()
-                }
+                        addPlace()
+                    }
+                    Button("\(isSearch ? "Done":"Search")"){
+                        
+                        isSearch.toggle()
+                    }
                 }
             )
         }
