@@ -7,7 +7,42 @@
 
 import SwiftUI
 import CoreData
+/// # **ContentView**
+///
+/// ## Brief Description
+/// Display Mainview
+/**
+     - Type: View
+     - Element:
+                    - Image
+                        - Type: Image
+                        - Usage : Upload and display image
+                    - isSearch
+                        - Type: Bool
+                        - Usage: Check whether the search function on or off.
+                    - placeName
+                        - Type: String
+                        - Usage: Display Place Name
+                    - places
+                        - Type: FetchedResults<Places>
+                        - Usage: Get all the coredata Places
+                    - addPlace()
+                        - Type: function
+                        - Usage: add new place
+                    - removeItem()
+                        - Type: function
+                        - Usage: delete one place
 
+
+     - Procedure:
+            1. Get  coredata in the beginning
+            2. Display all the data by using ``foreach`` loop.
+            3. Each list will linked to ``DetailView`` using ``navigationLink``
+            4. User can go to ``searchView`` by clicking 'Search' button
+            5. User can add new place by clicking '+' button and ``addPlace()``
+            6. User can delete the place by sliding the place ``removeItem(offsets:)``
+            
+ */
 struct ContentView: View {
     @Environment(\.managedObjectContext) var ctx //viewcontext
     @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])

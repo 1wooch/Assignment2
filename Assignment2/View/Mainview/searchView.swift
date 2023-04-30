@@ -8,7 +8,28 @@
 import SwiftUI
 import CoreData
 
-
+/// # **ContentView**
+///
+/// ## Brief Description
+/// Display Mainview
+/**
+     - Type: View
+     - Element:
+                    - placename
+                        - Type: string
+                        - Usage : variable for place name
+                    - viewContext
+                        - Type: NSManagedObjectContext
+                        - Usage: get viewContext for container
+                    - matchs
+                        - Type: [places]
+                        - Usage: Display matched result.
+                   
+     - Procedure:
+            1. Get  entered place name by user in the beginning
+            2. Search the name that contain user entered string.
+            3. Display all the result.
+ */
 struct searchView: View {
     var placeName:String
     var viewContext: NSManagedObjectContext

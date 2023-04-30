@@ -4,7 +4,24 @@
 //
 //  Created by 최원우 on 26/4/2023.
 //
+/// # **ContentView**
+///
+/// ## Brief Description
+/// Display Mainview
+/**
+     - Type: View
+     - Element:
+                    - place
+                        - Type: places
+                        - Usage : variable for place name
+                    - image
+                        - Type: Image
+                        - Usage:default image but if there is image url exist then get that image
+                    
+     - Procedure:
+            1. display image with the name
 
+ */
 import SwiftUI
 
 struct RowView: View {

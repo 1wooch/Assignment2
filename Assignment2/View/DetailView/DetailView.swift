@@ -4,7 +4,51 @@
 //
 //  Created by 최원우 on 26/4/2023.
 //
+/// # **ContentView**
+///
+/// ## Brief Description
+/// Display Mainview
+/**
+     - Type: View
+     - Element:
+                    - place
+                        - Type: places
+                        - Usage : variable for place name
+                    - name
+                        - Type: string
+                        - Usage:string value for name
+                
+                    - detail
+                        - Type: string
+                        - Usage:string value for detail
+                    - url
+                        - Type: string
+                        - Usage:string value for url
+                    - longtitude
+                        - Type: string
+                        - Usage:string value for longtitude
+                    - latitude
+                        - Type: string
+                        - Usage:string value for latitude
 
+                    - isEditing
+                        - Type: bool
+                        - Usage:bool value to check edit mode
+
+                    - image
+                        - Type: Image
+                        - Usage:image for place image
+
+
+ 
+ 
+     - Procedure:
+            1. display all the data of place
+            2. if ``editmode`` = True then move to edit mode
+            3. in edit mode user can enter new value for each ``place`` entity value
+ 
+
+ */
 import SwiftUI
 
 struct DetailView: View {
