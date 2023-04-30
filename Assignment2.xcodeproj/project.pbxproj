@@ -25,6 +25,8 @@
 		DCA2205829FD9087004A3BD9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9C429F9212900C9745A /* DetailView.swift */; };
 		DCA2205929FD9093004A3BD9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B729F7C60D00C9745A /* Persistence.swift */; };
 		DCA2205B29FD9A9F004A3BD9 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = DCA2205A29FD9A9F004A3BD9 /* Readme.md */; };
+		DCA2205C29FE866A004A3BD9 /* Assignment2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98729F7C47600C9745A /* Assignment2App.swift */; };
+		DCA2205D29FE866F004A3BD9 /* Coredata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B929F908CD00C9745A /* Coredata.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,9 +337,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA2205D29FE866F004A3BD9 /* Coredata.xcdatamodeld in Sources */,
 				DCA2205529FD907F004A3BD9 /* ContentView.swift in Sources */,
 				DCA2205629FD9083004A3BD9 /* RowView.swift in Sources */,
 				DCA2205729FD9085004A3BD9 /* ViewModel.swift in Sources */,
+				DCA2205C29FE866A004A3BD9 /* Assignment2App.swift in Sources */,
 				DCA2205929FD9093004A3BD9 /* Persistence.swift in Sources */,
 				DCA2205829FD9087004A3BD9 /* DetailView.swift in Sources */,
 				DC94D99929F7C47800C9745A /* Assignment2Tests.swift in Sources */,

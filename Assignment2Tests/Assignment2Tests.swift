@@ -8,6 +8,9 @@
 import XCTest
 @testable import Assignment2
 
+import SwiftUI
+import CoreData
+
 final class Assignment2Tests: XCTestCase {
 
     override func setUpWithError() throws {
@@ -32,5 +35,24 @@ final class Assignment2Tests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    func testImageUpload() {
+        let contentView = ContentView()
 
+        XCTAssertNotNil(contentView.body)
+    }
+    func testView(){
+
+        let contentView = ContentView()
+        XCTAssert(contentView.image is Image)
+    }
+    
+    func testPlace(){
+        let contentView = ContentView()
+        XCTAssert(contentView.places is FetchedResults<Places>)
+    }
+    func testDefaultImage(){
+        let contentView = ContentView()
+        let placesTest = contentView.places
+        XCTAssert(defaultImage is Image)
+    }
 }

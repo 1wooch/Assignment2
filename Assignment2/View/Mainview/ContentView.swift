@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) var ctx
+    @Environment(\.managedObjectContext) var ctx //viewcontext
     @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     var places:FetchedResults<Places>
     @State var image = defaultImage
