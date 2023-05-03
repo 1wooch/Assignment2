@@ -65,7 +65,7 @@ struct ContentView: View {
                                     RowView(place: place)
                                     Text("\(place.strName)")
                                 }                       }
-                        }.onDelete(perform: removeItem)
+                        }.onDelete(perform: removeItem )
                     }
                     
                 }
@@ -101,18 +101,26 @@ struct ContentView: View {
             )
         }
     }
-    func addPlace(){
-        let place = Places(context:ctx)
-        place.name="New Place"
-        place.detail=""
-        saveData()
-    }
+//    func addPlace(){
+//        let place = Places(context:ctx)
+//        place.name="New Place"
+//        place.detail=""
+//        saveData()
+//    }
+//    func removeItem(offsets:IndexSet){
+//        for index in offsets{
+//            let place = places[index]
+//            ctx.delete(place)
+//            saveData()
+//        }
+//    }
     func removeItem(offsets:IndexSet){
-        for index in offsets{
-            let place = places[index]
-            ctx.delete(place)
-            saveData()
+        var plcs:[Places]=[]
+        offsets.forEach{
+            plcs.append(places[$0])
         }
+        removePlace(places: plcs)
+        
     }
     
 }

@@ -97,3 +97,30 @@ func saveData() {
     }
 }
 
+func addPlace(){
+    let ctx = PersistenceHandler.shared.container.viewContext
+    @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
+    var places:FetchedResults<Places>
+    let place = Places(context:ctx)
+    place.name="New Place"
+    place.detail=""
+    saveData()
+}
+//func removeItem(offsets:IndexSet){
+//    let ctx = PersistenceHandler.shared.container.viewContext
+//    @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
+//    var places:FetchedResults<Places>
+//    for index in offsets{
+//        let place = places[index]
+//        ctx.delete(place)
+//        saveData()
+//    }
+//}
+func removePlace(places:[Places]){
+    let ctx = PersistenceHandler.shared.container.viewContext
+    places.forEach{
+        ctx.delete($0)
+    }
+    saveData()
+}
+

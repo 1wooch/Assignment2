@@ -112,7 +112,7 @@ struct DetailView: View {
             place.strName=name
             place.strDetail=detail
             place.strLatitude=latitude
-            place.strLatitude=latitude
+            place.strLongtitude=longtitude
             place.strUrl=url
             saveData()
         }
