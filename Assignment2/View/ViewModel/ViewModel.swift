@@ -9,7 +9,8 @@ import Foundation
 import CoreData
 
 import SwiftUI
-
+import MapKit
+import CoreLocation
 let defaultImage=Image(systemName: "photo").resizable()
 
 var downloadImages :[URL:Image] = [:]
@@ -66,6 +67,7 @@ extension Places{
     var rowDisplay:String{
         "Name: \(self.strName)"
     }
+    
     func getImage() async ->Image{
         guard let url = self.url else{return defaultImage}
         if let image = downloadImages[url] {return image}

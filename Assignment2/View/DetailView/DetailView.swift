@@ -60,6 +60,10 @@ struct DetailView: View {
     @State var latitude=""
     @State var isEditing = false
     @State var image = defaultImage
+    //Map
+    @ObservedObject var mapmodel:MapPlace
+
+    
     var body: some View {
         VStack{
             if !isEditing{
@@ -69,6 +73,12 @@ struct DetailView: View {
                     Text("Longtitude: \(longtitude)")
                     Text("Letitude: \(latitude)")
                     //Text("Url: \(url) ")
+                    NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
+                        HStack{
+                            Text("Edit Map")
+                        }
+                    }
+                    
                     image.scaledToFit().cornerRadius(20).shadow(radius: 20)
                 }
             }else{
@@ -78,6 +88,7 @@ struct DetailView: View {
                     TextField("Longtitude:",text: $longtitude)
                     TextField("Letitude:" ,text:$latitude)
                     TextField("Url:",text: $url)
+                    
                 }
             }
 //
@@ -91,6 +102,7 @@ struct DetailView: View {
                     place.strUrl=url
                     place.strDetail=detail
                     place.strLatitude=latitude
+                    place.strLongtitude=longtitude
                     saveData()
                     Task{
                         image = await place.getImage()

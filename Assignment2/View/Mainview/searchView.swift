@@ -34,11 +34,13 @@ struct searchView: View {
     var placeName:String
     var viewContext: NSManagedObjectContext
     @State var matchs:[Places]?
+    @ObservedObject var mapmodel:MapPlace
+
     
     var body: some View {
         List{
             ForEach(matchs ?? []){
-                match in NavigationLink(destination: DetailView(place: match)){
+                match in NavigationLink(destination: DetailView(place: match ,  mapmodel: mapmodel)){
                     HStack{
                         RowView(place: match)
                         Text("\(match.strName)")

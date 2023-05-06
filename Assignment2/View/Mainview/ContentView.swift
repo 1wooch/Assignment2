@@ -50,6 +50,9 @@ struct ContentView: View {
     @State var image = defaultImage
     @State var isSearch = false
     @State var placeName:String=""
+    //Map
+    @ObservedObject var mapmodel:MapPlace
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -57,7 +60,7 @@ struct ContentView: View {
                     List{
                         ForEach(places){
                             place in
-                            NavigationLink(destination: DetailView(place: place)){
+                            NavigationLink(destination: DetailView(place: place, mapmodel: mapmodel)){
                                 //RowView(place: place)
                                 
                                 HStack{
@@ -72,12 +75,12 @@ struct ContentView: View {
                 else{
                     TextField("Place Name:",text: $placeName)
                     NavigationLink("Search"){
-                        searchView(placeName: placeName, viewContext: ctx)
+                        searchView(placeName: placeName, viewContext: ctx, mapmodel: mapmodel)
                     }
                     List{
                         ForEach(places){
                             place in
-                            NavigationLink(destination: DetailView(place: place)){
+                            NavigationLink(destination: DetailView(place: place,mapmodel: mapmodel)){
                                 //RowView(place: place)
                                 
                                 HStack{
