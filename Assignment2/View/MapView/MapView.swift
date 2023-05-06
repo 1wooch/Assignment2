@@ -14,19 +14,32 @@ struct MapView: View {
 
     
 
-    @ObservedObject var mapmodel:MapPlace
-    
+    @StateObject var mapmodel:MapPlace
+    @State var zoom=10.0
+    @State var latitude=0.0
+    @State var longitude=0.0
     var body: some View {
         
         VStack{
-           
+            HStack{
+                Text("Address")
+                TextField("Address",text:$mapmodel.name)
+            }
+            HStack{
+                Text("Lat/Long")
+                TextField("Latitude",value: $latitude,format:.number)
+                TextField("Longitude",value: $longitude,format:.number)
+
+            }
+            Slider(value: $zoom, in:10...60){
+                print($0)
+            }
 
             Map(coordinateRegion: $mapmodel.region)
             
         }.padding()
         .onAppear(){
-//            latitude=Double(place.latitude)
-//            longtitude=Double(place.longitude)
+
         }
     }
 }
