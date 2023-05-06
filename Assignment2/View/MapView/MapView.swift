@@ -24,23 +24,51 @@ struct MapView: View {
             HStack{
                 Text("Address")
                 TextField("Address",text:$mapmodel.name)
+                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
+                    checkAddress()
+                }
             }
             HStack{
                 Text("Lat/Long")
                 TextField("Latitude",value: $latitude,format:.number)
                 TextField("Longitude",value: $longitude,format:.number)
-
+                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
+                    checkLocation()
+                }
             }
             Slider(value: $zoom, in:10...60){
-                print($0)
+                if !$0{
+                    checkZoom()
+                }
             }
-
-            Map(coordinateRegion: $mapmodel.region)
+            ZStack{
+                Map(coordinateRegion: $mapmodel.region)
+                VStack(alignment: .leading){
+                    Text("Latitude:\(mapmodel.region.center.latitude) ").font(.footnote)
+                    Text("Longitude:\(mapmodel.region.center.longitude) ").font(.footnote)
+                    Button("Update"){
+                        checkMap()
+                    }
+                        
+                }.offset(x:10,y:200)
+            }
             
         }.padding()
         .onAppear(){
 
         }
+    }
+    func checkAddress(){
+        
+    }
+    func checkLocation(){
+        
+    }
+    func checkZoom(){
+        
+    }
+    func checkMap(){
+        
     }
 }
 
