@@ -10,29 +10,30 @@ import MapKit
 
 
 struct MapView: View {
-    var place:Places
+    @Binding var place:Places
 
     
 
     @StateObject var mapmodel:MapPlace
     @State var zoom=10.0
-    @State var maplatitude="0.0"
-    @State var maplongitude="0.0"
+    @State var maplatitude:String="0.0"
+    @State var maplongitude:String="0.0"
+    
     var body: some View {
         
         VStack{
             HStack{
                 Text("Address")
-                TextField("Address",text:$mapmodel.name)
+                TextField("",text:$mapmodel.name)
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
                     checkAddress()
                 }
             }
             HStack{
                 Text("Lat/Long")
-                TextField("Latitude",text: $maplatitude)
+                TextField("",text: $maplatitude)
                 //,text: $mapmodel.latStr)//value: $latitude,format:.number)
-                TextField("Longitude",text: $maplongitude)
+                TextField("",text: $maplongitude)
                           //,text: $mapmodel.longStr)//value: $longitude,format:.number)
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
                     checkLocation()
@@ -60,8 +61,24 @@ struct MapView: View {
             checkMap()
         }
         .onAppear(){
+            
+            maplatitude=place.strLatitude
+            
+            maplongitude=place.strLongtitude
+            print(maplatitude)
+            print(maplongitude)
+            checkLocation()
+            checkMap()
 
+        }.onDisappear(){
+            place.strLatitude=maplatitude
+            place.strLongtitude=maplongitude
+            print(place.strLatitude)
+            print(place.strLongtitude)
+            
+            saveData()
         }
+        
     }
     func checkAddress(){
         mapmodel.fromAddressToLocD(upadateViewLoc)
