@@ -16,8 +16,8 @@ struct MapView: View {
 
     @StateObject var mapmodel:MapPlace
     @State var zoom=10.0
-    @State var latitude=0.0
-    @State var longitude=0.0
+    @State var maplatitude="0.0"
+    @State var maplongitude="0.0"
     var body: some View {
         
         VStack{
@@ -30,8 +30,10 @@ struct MapView: View {
             }
             HStack{
                 Text("Lat/Long")
-                TextField("Latitude",value: $latitude,format:.number)
-                TextField("Longitude",value: $longitude,format:.number)
+                TextField("Latitude",text: $maplatitude)
+                //,text: $mapmodel.latStr)//value: $latitude,format:.number)
+                TextField("Longitude",text: $maplongitude)
+                          //,text: $mapmodel.longStr)//value: $longitude,format:.number)
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
                     checkLocation()
                 }
@@ -54,6 +56,9 @@ struct MapView: View {
             }
             
         }.padding()
+        .task {
+            checkMap()
+        }
         .onAppear(){
 
         }
@@ -68,7 +73,10 @@ struct MapView: View {
         
     }
     func checkMap(){
-        
+        mapmodel.updateFromRegion()
+        maplatitude=mapmodel.latStr
+        maplongitude=mapmodel.longStr
+        mapmodel.fromLocToAddress()
     }
 }
 

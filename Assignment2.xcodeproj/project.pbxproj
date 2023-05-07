@@ -11,6 +11,8 @@
 		DC47BCBF2A06746400E5CFCD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47BCBD2A06746400E5CFCD /* MapView.swift */; };
 		DC47BCC12A06864600E5CFCD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47BCC02A06864600E5CFCD /* DataModel.swift */; };
 		DC47BCC22A06864600E5CFCD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47BCC02A06864600E5CFCD /* DataModel.swift */; };
+		DC60A8002A0792FC0054F04B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC60A7FF2A0792FB0054F04B /* MapViewModel.swift */; };
+		DC60A8012A0792FE0054F04B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC60A7FF2A0792FB0054F04B /* MapViewModel.swift */; };
 		DC94D98829F7C47600C9745A /* Assignment2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98729F7C47600C9745A /* Assignment2App.swift */; };
 		DC94D98A29F7C47600C9745A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98929F7C47600C9745A /* ContentView.swift */; };
 		DC94D98C29F7C47800C9745A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC94D98B29F7C47800C9745A /* Assets.xcassets */; };
@@ -54,6 +56,7 @@
 /* Begin PBXFileReference section */
 		DC47BCBD2A06746400E5CFCD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		DC47BCC02A06864600E5CFCD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		DC60A7FF2A0792FB0054F04B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		DC94D98429F7C47600C9745A /* Assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC94D98729F7C47600C9745A /* Assignment2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2App.swift; sourceTree = "<group>"; };
 		DC94D98929F7C47600C9745A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -199,6 +202,7 @@
 			children = (
 				DC94D9BD29F917A600C9745A /* ViewModel.swift */,
 				DC47BCC02A06864600E5CFCD /* DataModel.swift */,
+				DC60A7FF2A0792FB0054F04B /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -348,6 +352,7 @@
 				DC94D9BB29F908CD00C9745A /* Coredata.xcdatamodeld in Sources */,
 				DCA2205F29FE8B90004A3BD9 /* searchView.swift in Sources */,
 				DC47BCC12A06864600E5CFCD /* DataModel.swift in Sources */,
+				DC60A8002A0792FC0054F04B /* MapViewModel.swift in Sources */,
 				DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */,
 				DC94D98A29F7C47600C9745A /* ContentView.swift in Sources */,
 				DC47BCBE2A06746400E5CFCD /* MapView.swift in Sources */,
@@ -365,6 +370,7 @@
 				DCA2205729FD9085004A3BD9 /* ViewModel.swift in Sources */,
 				DCA2205C29FE866A004A3BD9 /* Assignment2App.swift in Sources */,
 				DC47BCC22A06864600E5CFCD /* DataModel.swift in Sources */,
+				DC60A8012A0792FE0054F04B /* MapViewModel.swift in Sources */,
 				DCA2205929FD9093004A3BD9 /* Persistence.swift in Sources */,
 				DCA2205829FD9087004A3BD9 /* DetailView.swift in Sources */,
 				DC47BCBF2A06746400E5CFCD /* MapView.swift in Sources */,

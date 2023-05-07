@@ -36,23 +36,32 @@ final class Assignment2Tests: XCTestCase {
         }
     }
     func testImageUpload() {
-        let contentView = ContentView()
+        let contentView = ContentView(mapmodel: MapPlace())
 
         XCTAssertNotNil(contentView.body)
     }
     func testView(){
 
-        let contentView = ContentView()
+        let contentView = ContentView(mapmodel: MapPlace())
         XCTAssert(contentView.image is Image)
     }
     
     func testPlace(){
-        let contentView = ContentView()
+        let contentView = ContentView(mapmodel: MapPlace())
         XCTAssert(contentView.places is FetchedResults<Places>)
     }
     func testDefaultImage(){
-        let contentView = ContentView()
+        let contentView = ContentView(mapmodel: MapPlace())
         let placesTest = contentView.places
         XCTAssert(defaultImage is Image)
+    }
+    func testLatStr(){
+        let model=MapPlace.shared
+        model.latStr="45"
+        XCTAssert(model.latStr=="45.00000")
+        model.latStr="91"
+        XCTAssert(model.latStr=="91")
+        model.latStr="-12.123456"
+        XCTAssert(model.latStr=="-12.12346")
     }
 }
