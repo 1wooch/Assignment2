@@ -64,7 +64,15 @@ struct MapView: View {
         }
     }
     func checkAddress(){
-        
+        mapmodel.fromAddressToLocD(upadateViewLoc)
+//        Task{
+//
+//            await mapmodel.fromAddressToLoc()
+//            //mapmodel.fromAddressToLocD()
+//            maplatitude = mapmodel.latStr
+//            maplongitude=mapmodel.longStr
+//        }
+
     }
     func checkLocation(){
         mapmodel.longStr=maplongitude
@@ -74,13 +82,22 @@ struct MapView: View {
         //get the value from coredata and adapt in here
     }
     func checkZoom(){
-        
+        //mapmodel.updateFromRegion()
+        checkMap()
+        mapmodel.fromZoomToDelta(zoom)
+        mapmodel.fromLocToAddress()
+        mapmodel.setupRegion()//kind of save
     }
     func checkMap(){
         mapmodel.updateFromRegion()
         maplatitude=mapmodel.latStr
         maplongitude=mapmodel.longStr
         mapmodel.fromLocToAddress()
+    }
+    func upadateViewLoc(){
+        maplatitude=mapmodel.latStr
+        maplongitude=mapmodel.longStr
+        
     }
 }
 
