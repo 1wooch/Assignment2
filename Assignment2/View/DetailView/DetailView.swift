@@ -52,7 +52,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    @State var place:Places
+    var place:Places
     @State var name = ""
     @State var detail=""
     @State var url=""
@@ -70,10 +70,10 @@ struct DetailView: View {
                 List{
                     Text("Name: \(name)")
                     Text("Detail: \(detail)")
-                    Text("Longtitude: \(longtitude)")
-                    Text("Letitude: \(latitude)")
+                    Text("Longtitude: \(place.strLatitude)")
+                    Text("Letitude: \(place.strLongtitude)")
                     //Text("Url: \(url) ")
-                    NavigationLink(destination: MapView(place: $place,mapmodel: mapmodel)){
+                    NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
                         HStack{
                             Text("Edit Map")
                         }

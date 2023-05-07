@@ -10,7 +10,7 @@ import MapKit
 
 
 struct MapView: View {
-    @Binding var place:Places
+    var place:Places
 
     
 
