@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreLocation
-
+import SwiftUI
 extension MapPlace{
     var latStr:String{
         get{String(format: "%.5f",latitude)}
@@ -46,6 +46,15 @@ extension MapPlace{
             
             
         }
+    }
+    func setupRegion(){
+        withAnimation{
+            region.center.latitude=latitude
+            region.center.longitude=longitude
+            region.span.longitudeDelta=delta
+            region.span.latitudeDelta=delta
+        }
+       
     }
     
 }

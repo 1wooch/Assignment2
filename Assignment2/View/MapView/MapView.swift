@@ -67,7 +67,11 @@ struct MapView: View {
         
     }
     func checkLocation(){
-        
+        mapmodel.longStr=maplongitude
+        mapmodel.latStr=maplatitude
+        mapmodel.fromLocToAddress()
+        mapmodel.setupRegion()
+        //get the value from coredata and adapt in here
     }
     func checkZoom(){
         
