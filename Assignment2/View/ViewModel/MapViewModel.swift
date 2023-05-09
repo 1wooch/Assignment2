@@ -60,7 +60,7 @@ extension MapPlace{
         let c2 = 3.0 //minimum zoom
         delta = pow(10.0,zoom/c1+c2)
     }
-    func fromAddressToLocD(_ cb:@escaping ()->Void){ // @escaping -> keep the call back not destrying it
+    func fromAddressToLocD(_ cb:@escaping ()->Void)async{ // @escaping -> keep the call back not destrying it
         let encode = CLGeocoder()
         encode.geocodeAddressString(self.name){
             marks,error in if let err = error{

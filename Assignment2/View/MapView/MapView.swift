@@ -10,7 +10,7 @@ import MapKit
 
 
 struct MapView: View {
-    @Binding var place:Places
+    var place:Places
 
     
 
@@ -25,11 +25,9 @@ struct MapView: View {
             HStack{
                 Text("Address")
                 TextField("",text:$mapmodel.name)
-                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
-                    checkAddress()
-                    place.strLatitude=maplatitude
-                    place.strLongtitude=maplongitude
-                    saveData()
+                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture{
+                   checkAddress()
+                    //checkLocation()
                 }
             }
             HStack{
@@ -85,34 +83,29 @@ struct MapView: View {
             //DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
 //                place.strLatitude=maplatitude
 //                place.strLongtitude=maplongitude
-//                print("mapview disa\(place.strLatitude)")
-//                print("mapView disa\(place.strLongtitude)")
-//                saveData()
+                print("mapview disa\(place.strLatitude)")
+                print("mapView disa\(place.strLongtitude)")
+                saveData()
             
             //}
             
         }
         
     }
-    func sendBack()async{
-        Task{
-            place.strLatitude=maplatitude
-            place.strLongtitude=maplongitude
-            print("mapview disa\(place.strLatitude)")
-            print("mapView disa\(place.strLongtitude)")
-            saveData()
-        }
-        
+    func save()async{
+        print("\(maplatitude) 1111")
+        print("\(maplongitude) 2222")
+        place.strLatitude=maplatitude
+        place.strLongtitude=maplongitude
+        saveData()
     }
     func checkAddress(){
-        mapmodel.fromAddressToLocD(upadateViewLoc)
-//        Task{
-//
-//            await mapmodel.fromAddressToLoc()
-//            //mapmodel.fromAddressToLocD()
-//            maplatitude = mapmodel.latStr
-//            maplongitude=mapmodel.longStr
-//        }
+        Task{
+            await mapmodel.fromAddressToLocD(upadateViewLoc)
+            await save()
+        }
+        
+
 
     }
     func checkLocation(){
@@ -138,7 +131,11 @@ struct MapView: View {
     func upadateViewLoc(){
         maplatitude=mapmodel.latStr
         maplongitude=mapmodel.longStr
-        
+        place.strLatitude=maplatitude
+        place.strLongtitude=maplongitude
+        saveData()
+        print("\(maplatitude)3333")
+        print("\(maplongitude)444")
     }
 }
 

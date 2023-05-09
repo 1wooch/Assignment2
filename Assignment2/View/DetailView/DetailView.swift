@@ -50,9 +50,11 @@
 
  */
 import SwiftUI
+import MapKit
+
 
 struct DetailView: View {
-    @State var place:Places
+    var place:Places
     @State var name = ""
     @State var detail=""
     @State var url=""
@@ -70,11 +72,14 @@ struct DetailView: View {
                 List{
                     Text("Name: \(name)")
                     Text("Detail: \(detail)")
+                    
                     Text("Longtitude: \(place.strLatitude)")
                     Text("Letitude: \(place.strLongtitude)")
                     //Text("Url: \(url) ")
-                    NavigationLink(destination: MapView(place: $place,mapmodel: mapmodel)){
+                    NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
                         HStack{
+                            Map(coordinateRegion: $mapmodel.region
+                            ).frame(width: 50.0)
                             Text("Edit Map")
                         }
                     }
@@ -107,7 +112,6 @@ struct DetailView: View {
                     Task{
                         image = await place.getImage()
                     }
-                    
                 }
                 isEditing.toggle()
             }
@@ -121,6 +125,9 @@ struct DetailView: View {
             url=place.strUrl
             print("detailView appe \(place.strLatitude)")
             print("detailView appe\(place.strLongtitude)")
+            //mapmodel.setupRegion()
+            mapmodel.region.center.latitude=Double(place.latitude)
+            mapmodel.region.center.longitude=Double(place.longitude)
         }.onDisappear(){
             place.strName=name
             place.strDetail=detail
