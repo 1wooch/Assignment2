@@ -10,7 +10,7 @@ import MapKit
 
 
 struct MapView: View {
-    var place:Places
+    @Binding var place:Places
 
     
 
@@ -27,6 +27,9 @@ struct MapView: View {
                 TextField("",text:$mapmodel.name)
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
                     checkAddress()
+                    place.strLatitude=maplatitude
+                    place.strLongtitude=maplongitude
+                    saveData()
                 }
             }
             HStack{
@@ -37,11 +40,17 @@ struct MapView: View {
                           //,text: $mapmodel.longStr)//value: $longitude,format:.number)
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
                     checkLocation()
+                    place.strLatitude=maplatitude
+                    place.strLongtitude=maplongitude
+                    saveData()
                 }
             }
             Slider(value: $zoom, in:10...60){
                 if !$0{
                     checkZoom()
+//                    place.strLatitude=maplatitude
+//                    place.strLongtitude=maplongitude
+//                    saveData()
                 }
             }
             ZStack{
@@ -51,6 +60,9 @@ struct MapView: View {
                     Text("Longitude:\(mapmodel.region.center.longitude) ").font(.footnote)
                     Button("Update"){
                         checkMap()
+                        place.strLatitude=maplatitude
+                        place.strLongtitude=maplongitude
+                        saveData()
                     }
                         
                 }.offset(x:10,y:200)
@@ -63,19 +75,31 @@ struct MapView: View {
         .onAppear(){
             
             maplatitude=place.strLatitude
-            
             maplongitude=place.strLongtitude
-            print(maplatitude)
-            print(maplongitude)
+            print("mapview appe \(maplatitude)")
+            print("mapview appe\(maplongitude)")
             checkLocation()
             checkMap()
 
         }.onDisappear(){
+            //DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+//                place.strLatitude=maplatitude
+//                place.strLongtitude=maplongitude
+//                print("mapview disa\(place.strLatitude)")
+//                print("mapView disa\(place.strLongtitude)")
+//                saveData()
+            
+            //}
+            
+        }
+        
+    }
+    func sendBack()async{
+        Task{
             place.strLatitude=maplatitude
             place.strLongtitude=maplongitude
-            print(place.strLatitude)
-            print(place.strLongtitude)
-            
+            print("mapview disa\(place.strLatitude)")
+            print("mapView disa\(place.strLongtitude)")
             saveData()
         }
         

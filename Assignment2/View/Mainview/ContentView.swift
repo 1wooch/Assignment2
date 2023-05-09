@@ -47,6 +47,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var ctx //viewcontext
     @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     var places:FetchedResults<Places>
+    //@State var copyPlaces:Places
     @State var image = defaultImage
     @State var isSearch = false
     @State var placeName:String=""
@@ -92,6 +93,11 @@ struct ContentView: View {
                     }
                 }
             }.navigationTitle("My Places")
+                .onAppear(){
+                    //copyPlaces=places
+                }.onDisappear(){
+                    //places = copyPlaces
+                }
                 .navigationBarItems( trailing:HStack{
                     Button("+"){
                         addPlace()
