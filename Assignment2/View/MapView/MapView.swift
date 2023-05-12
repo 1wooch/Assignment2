@@ -92,7 +92,7 @@ struct MapView: View {
         }
         
     }
-    func save()async{
+    func save(){
         print("\(maplatitude) 1111")
         print("\(maplongitude) 2222")
         place.strLatitude=maplatitude
@@ -100,9 +100,9 @@ struct MapView: View {
         saveData()
     }
     func checkAddress(){
-        Task{
-            await mapmodel.fromAddressToLocD(upadateViewLoc)
-            await save()
+        DispatchQueue.main.async {
+            mapmodel.fromAddressToLocD(upadateViewLoc)
+            save()
         }
         
 
