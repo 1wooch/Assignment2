@@ -64,8 +64,9 @@ struct DetailView: View {
     @State var image = defaultImage
     //Map
     @ObservedObject var mapmodel:MapPlace
+    //var testRegion:MKCoordinateRegion=$mapmodel.region
+    @State private var testRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
-    
     var body: some View {
         VStack{
             if !isEditing{
@@ -78,7 +79,7 @@ struct DetailView: View {
                     //Text("Url: \(url) ")
                     NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
                         HStack{
-                            Map(coordinateRegion: $mapmodel.region
+                            Map(coordinateRegion: $testRegion//$mapmodel.region
                             ).frame(width: 50.0)
                             Text("Edit Map")
                         }
@@ -126,8 +127,12 @@ struct DetailView: View {
             print("detailView appe \(place.strLatitude)")
             print("detailView appe\(place.strLongtitude)")
             //mapmodel.setupRegion()
-            mapmodel.region.center.latitude=Double(place.latitude)
-            mapmodel.region.center.longitude=Double(place.longitude)
+//            mapmodel.region.center.latitude=Double(place.latitude)
+//            mapmodel.region.center.longitude=Double(place.longitude)
+            self.testRegion.center.latitude=Double(place.latitude)
+            self.testRegion.center.longitude=Double(place.longitude)
+            self.testRegion.span.longitudeDelta=mapmodel.delta
+            self.testRegion.span.latitudeDelta=mapmodel.delta
         }.onDisappear(){
             place.strName=name
             place.strDetail=detail
