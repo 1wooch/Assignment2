@@ -13,11 +13,21 @@
                     - name
                         - Type: String
                         - Usage : store name of location
- 
-                   
+                    - latitude
+                        - Type: Double
+                        - Usage : store latitude value
+                    - longitude
+                        - Type: Double
+                        - Usage : store longitude value
+                    - delta
+                        - Type: Double
+                        - Usage : store delta value for zooming
+                    - region
+                        - Type: MKCoordinateRegion
+                        - Usage : togerenate map it store the value for latitude and logintude in region and span is for zooming
  
      - Procedure:
-            1. get ``strlatitude`` and ``strLongitude`` from ``Places`` coredata
+            N/A
            
  */
 

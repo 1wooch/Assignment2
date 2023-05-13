@@ -34,6 +34,7 @@
 		DCA2205C29FE866A004A3BD9 /* Assignment2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98729F7C47600C9745A /* Assignment2App.swift */; };
 		DCA2205D29FE866F004A3BD9 /* Coredata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B929F908CD00C9745A /* Coredata.xcdatamodeld */; };
 		DCA2205F29FE8B90004A3BD9 /* searchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2205E29FE8B90004A3BD9 /* searchView.swift */; };
+		DCF5D1C02A0FE9CF007F12CD /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = DCF5D1BF2A0FE9CF007F12CD /* Documentation.docc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		DC94D9C629F959D700C9745A /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		DCA2205A29FD9A9F004A3BD9 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		DCA2205E29FE8B90004A3BD9 /* searchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchView.swift; sourceTree = "<group>"; };
+		DCF5D1BF2A0FE9CF007F12CD /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		DC94D97B29F7C47600C9745A = {
 			isa = PBXGroup;
 			children = (
+				DCF5D1BF2A0FE9CF007F12CD /* Documentation.docc */,
 				DCA2205A29FD9A9F004A3BD9 /* Readme.md */,
 				DC94D98629F7C47600C9745A /* Assignment2 */,
 				DC94D99729F7C47800C9745A /* Assignment2Tests */,
@@ -353,6 +356,7 @@
 				DCA2205F29FE8B90004A3BD9 /* searchView.swift in Sources */,
 				DC47BCC12A06864600E5CFCD /* DataModel.swift in Sources */,
 				DC60A8002A0792FC0054F04B /* MapViewModel.swift in Sources */,
+				DCF5D1C02A0FE9CF007F12CD /* Documentation.docc in Sources */,
 				DC94D9B829F7C60D00C9745A /* Persistence.swift in Sources */,
 				DC94D98A29F7C47600C9745A /* ContentView.swift in Sources */,
 				DC47BCBE2A06746400E5CFCD /* MapView.swift in Sources */,

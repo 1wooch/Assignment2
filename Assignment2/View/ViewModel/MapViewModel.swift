@@ -5,6 +5,53 @@
 //  Created by 최원우 on 7/5/2023.
 //
 
+
+/// ## Brief Description
+/// MapViewModel
+/**
+     - Type: View
+     - Element:
+                    - latStr
+                        - Type: String
+                        - Usage : get latitude from ``MapPlace`` and put it in string
+ 
+                    - longstr
+                        - Type: String
+                        - Usage :  get longitude from ``MapPlace`` and put it in string
+ 
+                    - updateFromRegion
+                        - Type: Function
+                        - Usage : get latitude from map.region
+ 
+                    - fromLocToAddress
+                        - Type: Function
+                        - Usage : Get a location which is latitude and longitude  and get a location. In the function, get as detail as name can, country-> locality-> localarea.
+ 
+                    - setupRegion
+                        - Type: Function
+                        - Usage : Put zoom (delta) and location(longitude , latitude)  in region
+ 
+                    - fromZoomToDelta
+                        - Type: Function
+                        - Usage : get a zoom value from mapview and put it in equation and get delta after that use setupRegion.
+ 
+ 
+                    - fromAddressToLocD
+                        - Type: Function
+                        - Usage : get a address (name) and get a location information (latitude, logitude) and return that value.
+ 
+ 
+ 
+                    - fromAddressTiKic
+                        - Type: Function
+                        - Usage : same as fromAddressToLocD but has async
+
+     - Procedure:
+            callback datamodel for map.
+           
+ */
+
+
 import Foundation
 import CoreLocation
 import SwiftUI
