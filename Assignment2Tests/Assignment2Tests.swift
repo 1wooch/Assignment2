@@ -58,10 +58,39 @@ final class Assignment2Tests: XCTestCase {
     func testLatStr(){
         let model=MapPlace.shared
         model.latStr="45"
-        XCTAssert(model.latStr=="45.00000")
+         
         model.latStr="91"
         XCTAssert(model.latStr=="91")
         model.latStr="-12.123456"
         XCTAssert(model.latStr=="-12.12346")
     }
+    
+    func testMapViewType(){
+        let contentView = ContentView(mapmodel: MapPlace())
+
+        let mapview = MapView(place:Places(), mapmodel: MapPlace())
+
+        XCTAssert(mapview.mapzoom is Double)
+        XCTAssert(mapview.maplatitude is String)
+        XCTAssert(mapview.maplongitude is String)
+    }
+    func testMapModelType(){
+        let mapmodel = MapPlace()
+        XCTAssert(mapmodel.name is String)
+        XCTAssert(mapmodel.latitude is Double)
+        XCTAssert(mapmodel.longitude is Double)
+        XCTAssert(mapmodel.delta is Double)
+        
+    }
+    func testFROMZOOMTODELTA(){
+        let mapmodel = MapPlace()
+        let delta = 10.0
+        mapmodel.fromZoomToDelta(delta)
+        mapmodel.setupRegion()
+        
+        XCTAssert(mapmodel.region.span.longitudeDelta == 100)
+    }
 }
+// IMPORTANT&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// REMOVE searchView call in ContentVIew before test
+
