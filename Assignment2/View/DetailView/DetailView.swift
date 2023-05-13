@@ -7,7 +7,7 @@
 /// # **ContentView**
 ///
 /// ## Brief Description
-/// Display Mainview
+/// Display Detailview
 /**
      - Type: View
      - Element:
@@ -38,14 +38,34 @@
                     - image
                         - Type: Image
                         - Usage:image for place image
+                                        
+                    - detailmapdelta
+                        - Type: double
+                        - Usage:setting a minimap delta value
+                     
+                    - c1,c2
+                    - Type: double
+                    - Usage: calulate material to get map delta.
+ 
+                    - mapmodel
+                    - Type: MapPlace
+                    - Usage: get mapmodel
+
+                    - detailviewRegion
+                    - Type: MKCoordinateRegion
+                    - Usage:  map value.
 
 
+                                         
  
  
      - Procedure:
             1. display all the data of place
             2. if ``editmode`` = True then move to edit mode
             3. in edit mode user can enter new value for each ``place`` entity value
+            4. get ``place.zoom`` , ``place.latitude``, ``place.longitude`` from place coredata
+            5. put the value from procedure 4 and put that in ``detailviewRegion``
+            6. When disappear the value will be save on coredata and send it to mapview
  
 
  */
@@ -67,7 +87,7 @@ struct DetailView: View {
     var c1 = -10.0
     var c2 = 3.5
     @ObservedObject var mapmodel:MapPlace
-    @State private var testRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    @State private var detailviewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
     var body: some View {
         VStack{
@@ -81,7 +101,7 @@ struct DetailView: View {
                     //Text("Url: \(url) ")
                     NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
                         HStack{
-                            Map(coordinateRegion: $testRegion//$mapmodel.region
+                            Map(coordinateRegion: $detailviewRegion//$mapmodel.region
                             ).frame(width: 50.0)
                             Text("Edit Map")
                         }
@@ -128,10 +148,10 @@ struct DetailView: View {
             print("detailView appe\(place.strLongtitude)")
             detailmapdelta=pow(10.0,place.zoom/c1+c2)
         
-            self.testRegion.center.latitude=Double(place.latitude)
-            self.testRegion.center.longitude=Double(place.longitude)
-            self.testRegion.span.longitudeDelta=detailmapdelta
-            self.testRegion.span.latitudeDelta=detailmapdelta
+            self.detailviewRegion.center.latitude=Double(place.latitude)
+            self.detailviewRegion.center.longitude=Double(place.longitude)
+            self.detailviewRegion.span.longitudeDelta=detailmapdelta
+            self.detailviewRegion.span.latitudeDelta=detailmapdelta
         }.onDisappear(){
             place.strName=name
             place.strDetail=detail

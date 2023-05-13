@@ -5,6 +5,23 @@
 //  Created by 최원우 on 6/5/2023.
 //
 
+/// ## Brief Description
+/// DataModel
+/**
+     - Type: View
+     - Element:
+                    - name
+                        - Type: String
+                        - Usage : store name of location
+ 
+                   
+ 
+     - Procedure:
+            1. get ``strlatitude`` and ``strLongitude`` from ``Places`` coredata
+           
+ */
+
+
 import Foundation
 import MapKit
 import CoreLocation
