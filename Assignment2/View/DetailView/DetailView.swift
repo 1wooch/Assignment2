@@ -62,9 +62,11 @@ struct DetailView: View {
     @State var latitude=""
     @State var isEditing = false
     @State var image = defaultImage
-    //Map
+    
+    @State var detailmapdelta = 20.0
+    var c1 = -10.0
+    var c2 = 3.5
     @ObservedObject var mapmodel:MapPlace
-    //var testRegion:MKCoordinateRegion=$mapmodel.region
     @State private var testRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
     var body: some View {
@@ -97,8 +99,6 @@ struct DetailView: View {
                     
                 }
             }
-//
-           // image.scaledToFit().cornerRadius(20).shadow(radius: 20)
         }
         .navigationTitle("Place Detail")
         .navigationBarItems( trailing:VStack{
@@ -126,13 +126,12 @@ struct DetailView: View {
             url=place.strUrl
             print("detailView appe \(place.strLatitude)")
             print("detailView appe\(place.strLongtitude)")
-            //mapmodel.setupRegion()
-//            mapmodel.region.center.latitude=Double(place.latitude)
-//            mapmodel.region.center.longitude=Double(place.longitude)
+            detailmapdelta=pow(10.0,place.zoom/c1+c2)
+        
             self.testRegion.center.latitude=Double(place.latitude)
             self.testRegion.center.longitude=Double(place.longitude)
-            self.testRegion.span.longitudeDelta=mapmodel.delta
-            self.testRegion.span.latitudeDelta=mapmodel.delta
+            self.testRegion.span.longitudeDelta=detailmapdelta
+            self.testRegion.span.latitudeDelta=detailmapdelta
         }.onDisappear(){
             place.strName=name
             place.strDetail=detail

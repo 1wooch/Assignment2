@@ -15,7 +15,7 @@ struct MapView: View {
     
 
     @StateObject var mapmodel:MapPlace
-    @State var zoom=10.0
+    @State var mapzoom=10.0
     @State var maplatitude:String="0.0"
     @State var maplongitude:String="0.0"
     
@@ -26,16 +26,15 @@ struct MapView: View {
                 Text("Address")
                 TextField("",text:$mapmodel.name)
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture{
-                   checkAddress()
-                    //checkLocation()
+                    
+                    checkAddress()
                 }
             }
             HStack{
                 Text("Lat/Long")
                 TextField("",text: $maplatitude)
-                //,text: $mapmodel.latStr)//value: $latitude,format:.number)
                 TextField("",text: $maplongitude)
-                          //,text: $mapmodel.longStr)//value: $longitude,format:.number)
+        
                 Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
                     checkLocation()
                     place.strLatitude=maplatitude
@@ -43,12 +42,12 @@ struct MapView: View {
                     saveData()
                 }
             }
-            Slider(value: $zoom, in:10...60){
+            Slider(value: $mapzoom, in:10...60){
                 if !$0{
+                    place.zoom=mapzoom
+                    saveData()
+                    print("Zoom Slider____\(mapzoom)")
                     checkZoom()
-//                    place.strLatitude=maplatitude
-//                    place.strLongtitude=maplongitude
-//                    saveData()
                 }
             }
             ZStack{
@@ -71,24 +70,24 @@ struct MapView: View {
             checkMap()
         }
         .onAppear(){
-            
+            if(place.zoom<10.0){
+                place.zoom=10
+            }
+            mapzoom=place.zoom
             maplatitude=place.strLatitude
             maplongitude=place.strLongtitude
-            print("mapview appe \(maplatitude)")
-            print("mapview appe\(maplongitude)")
+            print("mapview appe \(mapzoom)")
             checkLocation()
+            checkZoom()
             checkMap()
 
         }.onDisappear(){
-            //DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
-//                place.strLatitude=maplatitude
-//                place.strLongtitude=maplongitude
-                print("mapview disa\(place.strLatitude)")
-                print("mapView disa\(place.strLongtitude)")
+
+                place.strLatitude=maplatitude
+                place.strLongtitude=maplongitude
+                place.zoom=mapzoom
+                print("mapview dis \(mapzoom)")
                 saveData()
-            
-            //}
-            
         }
         
     }
@@ -118,7 +117,7 @@ struct MapView: View {
     func checkZoom(){
         //mapmodel.updateFromRegion()
         checkMap()
-        mapmodel.fromZoomToDelta(zoom)
+        mapmodel.fromZoomToDelta(mapzoom)
         mapmodel.fromLocToAddress()
         mapmodel.setupRegion()//kind of save
     }

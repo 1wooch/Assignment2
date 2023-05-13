@@ -106,6 +106,8 @@ func addPlace(){
     let place = Places(context:ctx)
     place.name="New Place"
     place.detail=""
+    place.zoom=10.0
+    
     saveData()
 }
 //func removeItem(offsets:IndexSet){
