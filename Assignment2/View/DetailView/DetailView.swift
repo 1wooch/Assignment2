@@ -42,6 +42,10 @@
                     - detailmapdelta
                         - Type: double
                         - Usage:setting a minimap delta value
+                    - locationNameD
+                        - Type: String
+                        - Usage:Store Location Name 
+
                      
                     - c1,c2
                     - Type: double

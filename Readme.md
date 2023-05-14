@@ -35,7 +35,7 @@ The Milestone Two has implement:
     1. MapPlace Model -> setting mapmodel value. 
     2. MapViewModel file -> all the function for map view 
     3. MapView -> Display Map and Display longitude, Latitude and location name
-    4. CoreData -> Add Zoom value so the zoom apply to minimap and also user don't need to zoom in when they just get into map view
+    4. CoreData -> Add Zoom value so the zoom apply to minimap and also user don't need to zoom in when they just get into map view and also store name of street in coredata
     5. because I change the coredata I change when the new coredata added zoom value for new coredata.
     
 
