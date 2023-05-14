@@ -83,6 +83,7 @@ struct DetailView: View {
     @State var isEditing = false
     @State var image = defaultImage
     
+    @State var locationNameD:String=""
     @State var detailmapdelta = 20.0
     var c1 = -10.0
     var c2 = 3.5
@@ -94,6 +95,7 @@ struct DetailView: View {
             if !isEditing{
                 List{
                     Text("Name: \(name)")
+                    Text("Location name \(locationNameD)")
                     Text("Detail: \(detail)")
                     
                     Text("Longtitude: \(place.strLatitude)")
@@ -137,28 +139,26 @@ struct DetailView: View {
                 isEditing.toggle()
             }
         })
-
         .onAppear{
             name=place.strName
             detail=place.strDetail
             longtitude=place.strLongtitude
             latitude=place.strLatitude
             url=place.strUrl
-            print("detailView appe \(place.strLatitude)")
-            print("detailView appe\(place.strLongtitude)")
+            locationNameD=place.strLoctionName
             detailmapdelta=pow(10.0,place.zoom/c1+c2)
         
             self.detailviewRegion.center.latitude=Double(place.latitude)
             self.detailviewRegion.center.longitude=Double(place.longitude)
             self.detailviewRegion.span.longitudeDelta=detailmapdelta
             self.detailviewRegion.span.latitudeDelta=detailmapdelta
+            
         }.onDisappear(){
             place.strName=name
             place.strDetail=detail
             place.strLatitude=latitude
             place.strLongtitude=longtitude
-            print("detailView disa\(place.strLatitude)")
-            print("detailView disa\(place.strLongtitude)")
+            //place.strLoctionName=locationNameD
             place.strUrl=url
             saveData()
         }

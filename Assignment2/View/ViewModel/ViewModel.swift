@@ -23,7 +23,13 @@ extension Places{
             self.name=newValue
         }
     }
-    
+    var strLoctionName:String{
+        get{
+            self.locationName ?? "New Street"
+        }set{
+            self.locationName=newValue
+        }
+    }
     var strDetail:String{
         get{
             self.detail ?? "Enter Detail "
@@ -107,7 +113,7 @@ func addPlace(){
     place.name="New Place"
     place.detail=""
     place.zoom=10.0
-    
+    place.locationName="New Street"
     saveData()
 }
 //func removeItem(offsets:IndexSet){

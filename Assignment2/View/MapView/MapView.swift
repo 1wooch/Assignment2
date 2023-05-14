@@ -136,11 +136,14 @@ struct MapView: View {
             checkMap()
 
         }.onDisappear(){
-
+                
+                //place.strName=mapmodel.name
                 place.strLatitude=maplatitude
                 place.strLongtitude=maplongitude
                 place.zoom=mapzoom
-                print("mapview dis \(mapzoom)")
+                place.strLoctionName=mapmodel.name
+            
+
                 saveData()
         }
         
