@@ -108,9 +108,9 @@ struct MapView: View {
                 Map(coordinateRegion: $mapmodel.region)
                 
             }
-            VStack(alignment: .leading){
-                Text("Latitude:\(mapmodel.region.center.latitude) ").font(.footnote)
-                Text("Longitude:\(mapmodel.region.center.longitude) ").font(.footnote)
+            VStack(alignment:.center){
+                Text("Latitude:\(mapmodel.region.center.latitude) ")//.font(.footnote)
+                Text("Longitude:\(mapmodel.region.center.longitude) ")//.font(.footnote)
                 Button("Update"){
                     checkMap()
                     place.strLatitude=maplatitude
