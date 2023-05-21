@@ -198,6 +198,9 @@ struct DetailView: View {
             place.strLongtitude=longtitude
             //place.strLoctionName=locationNameD
             place.strUrl=url
+            place.timezone=timezonestr
+            place.sunset=sunsetstr
+            place.sunrise=sunrisestr
             saveData()
         }
         .task {
