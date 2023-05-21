@@ -76,7 +76,7 @@ struct ContentView: View {
                 else{
                     TextField("Place Name:",text: $placeName)
                     NavigationLink("Search"){
-//                        searchView(placeName: placeName, viewContext: ctx, mapmodel: mapmodel)
+                        searchView(placeName: placeName, viewContext: ctx, mapmodel: mapmodel)
                     }
                     List{
                         ForEach(places){

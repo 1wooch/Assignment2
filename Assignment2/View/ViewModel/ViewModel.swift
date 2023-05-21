@@ -15,6 +15,20 @@ let defaultImage=Image(systemName: "photo").resizable()
 
 var downloadImages :[URL:Image] = [:]
 
+struct TimeZone:Decodable{
+    var timeZone:String
+    
+}
+struct SunriseSunset: Codable {
+    var sunrise: String
+    var sunset: String
+}
+struct SunriseSunsetAPI: Codable {
+    var results: SunriseSunset
+    var status:String?
+}
+
+
 extension Places{
     var strName:String{
         get{
@@ -99,6 +113,7 @@ extension Places{
 func saveData() {
     let ctx = PersistenceHandler.shared.container.viewContext
     do{
+        print("Save function executed")
         try ctx.save()
     } catch {
         fatalError("Error in save data with \(error)")
@@ -116,16 +131,7 @@ func addPlace(){
     place.locationName="New Street"
     saveData()
 }
-//func removeItem(offsets:IndexSet){
-//    let ctx = PersistenceHandler.shared.container.viewContext
-//    @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
-//    var places:FetchedResults<Places>
-//    for index in offsets{
-//        let place = places[index]
-//        ctx.delete(place)
-//        saveData()
-//    }
-//}
+
 func removePlace(places:[Places]){
     let ctx = PersistenceHandler.shared.container.viewContext
     places.forEach{
@@ -134,3 +140,86 @@ func removePlace(places:[Places]){
     saveData()
 }
 
+func fetchSunriseset(_ inputLong: String, _ inputLat: String, completion: @escaping ([String]) -> Void) {
+    var inputLong = inputLong
+    var inputLat = inputLat
+
+    if let number = Double(inputLong) {
+        let decimalLong = String(format: "%.2f", number)
+        inputLong = decimalLong
+    } else {
+        print("Invalid input")
+    }
+    
+    if let number = Double(inputLat) {
+        let decimalLat = String(format: "%.2f", number)
+        inputLat = decimalLat
+    } else {
+        print("Invalid input")
+    }
+    
+    let urlStr = "https://api.sunrise-sunset.org/json?lat=\(inputLat)&lng=\(inputLong)"
+    guard let url = URL(string: urlStr) else {
+        return
+    }
+    
+    let request = URLRequest(url: url)
+    
+    URLSession.shared.dataTask(with: request) { data, _, _ in
+        guard let data = data,
+              let api = try? JSONDecoder().decode(SunriseSunsetAPI.self, from: data)
+        else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            let sunrise = api.results.sunrise
+            let sunset = api.results.sunset
+            completion([sunrise, sunset])
+        }
+        
+    }.resume()
+
+    
+    
+}
+
+func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(String)->Void){
+
+        var inputLong = inputLong
+        var inputLat = inputLat
+
+        if let number = Double(inputLong) {
+            let decimalLong = String(format: "%.2f", number)
+            inputLong=decimalLong
+            //decimalLongValue=decimalLong
+        } else {
+            print("Invalid input")
+        }
+        if let number = Double(inputLat) {
+             let decimalLat = String(format: "%.2f", number)
+             inputLat=decimalLat
+        } else {
+            print("Invalid input")
+        }
+
+
+        let urlStr =
+        "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
+        guard let url = URL(string: urlStr) else {
+            return
+        }
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request){
+            data,_, _ in
+            guard let data=data, let api=try?
+                    JSONDecoder().decode(TimeZone.self, from: data)else{
+                return
+            }
+
+            DispatchQueue.main.async {
+                completion(api.timeZone)
+
+            }
+        }.resume()
+    }

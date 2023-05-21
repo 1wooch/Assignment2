@@ -86,6 +86,12 @@ struct DetailView: View {
     @State var latitude=""
     @State var isEditing = false
     @State var image = defaultImage
+    @State var sunrisestr=""
+    @State var sunsetstr=""
+    @State var timezonestr=""
+    
+    @State var test:[String]=[]
+    
     
     @State var locationNameD:String=""
     @State var detailmapdelta = 20.0
@@ -94,6 +100,20 @@ struct DetailView: View {
     @ObservedObject var mapmodel:MapPlace
     @State private var detailviewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
+    struct TimeZone:Decodable{
+        var timeZone:String
+
+    }
+    struct SunriseSunset: Codable {
+        var sunrise: String
+        var sunset: String
+    }
+    struct SunriseSunsetAPI: Codable {
+        var results: SunriseSunset
+        var status:String?
+    }
+    
+    
     var body: some View {
         VStack{
             if !isEditing{
@@ -104,6 +124,12 @@ struct DetailView: View {
                     
                     Text("Longtitude: \(place.strLatitude)")
                     Text("Letitude: \(place.strLongtitude)")
+                    
+                    Text("Sunrise: \(sunrisestr)")
+                    Text("Sunset: \(sunsetstr)")
+                    Text("TimeZone: \(timezonestr)")
+
+                    
                     //Text("Url: \(url) ")
                     NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
                         HStack{
@@ -151,7 +177,15 @@ struct DetailView: View {
             url=place.strUrl
             locationNameD=place.strLoctionName
             detailmapdelta=pow(10.0,place.zoom/c1+c2)
-        
+            
+            fetchSunriseset(place.strLongtitude,place.strLatitude) { result in
+                sunrisestr=result[0]
+                sunsetstr=result[1]
+            }
+            fetchTimeZone(place.strLongtitude, place.strLatitude){
+                result in
+                timezonestr=result
+            }
             self.detailviewRegion.center.latitude=Double(place.latitude)
             self.detailviewRegion.center.longitude=Double(place.longitude)
             self.detailviewRegion.span.longitudeDelta=detailmapdelta
@@ -171,4 +205,6 @@ struct DetailView: View {
         }
     }
 }
+
+
 

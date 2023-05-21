@@ -63,6 +63,7 @@ import SwiftUI
 import MapKit
 
 
+
 struct MapView: View {
     var place:Places
 
@@ -72,6 +73,7 @@ struct MapView: View {
     @State var mapzoom=10.0
     @State var maplatitude:String="0.0"
     @State var maplongitude:String="0.0"
+    @State var timeZoneStr:String=""
     
     var body: some View {
         
@@ -100,7 +102,6 @@ struct MapView: View {
                 if !$0{
                     place.zoom=mapzoom
                     saveData()
-                    print("Zoom Slider____\(mapzoom)")
                     checkZoom()
                 }
             }
@@ -109,43 +110,55 @@ struct MapView: View {
                 
             }
             VStack(alignment:.center){
+//                Text("TimeZone:\(mapmodel.timeZone)")
+//                Text("sunset: \(mapmodel.sunSet)")
+//                Text("sunrise: \(mapmodel.sunRise)")
                 Text("Latitude:\(mapmodel.region.center.latitude) ")//.font(.footnote)
                 Text("Longitude:\(mapmodel.region.center.longitude) ")//.font(.footnote)
                 Button("Update"){
-                    checkMap()
+                    DispatchQueue.main.async {
+                        
+                        checkMap()
+                    }
                     place.strLatitude=maplatitude
                     place.strLongtitude=maplongitude
+                    place.strLoctionName=mapmodel.name
                     saveData()
                 }
-                    
+                
             }
         }.padding()
         .task {
             checkMap()
         }
         .onAppear(){
+            
             if(place.zoom<10.0){
                 place.zoom=10
             }
             mapzoom=place.zoom
             maplatitude=place.strLatitude
             maplongitude=place.strLongtitude
-            print("mapview appe \(mapzoom)")
+            
+//            mapmodel.fetchTimeZone(maplongitude,maplatitude)
+//            mapmodel.fetchSunriseset(maplongitude, maplatitude)
             checkLocation()
             checkZoom()
             checkMap()
-
-        }.onDisappear(){
-                
-                //place.strName=mapmodel.name
-                place.strLatitude=maplatitude
-                place.strLongtitude=maplongitude
-                place.zoom=mapzoom
-                place.strLoctionName=mapmodel.name
             
-
-                saveData()
+        }.onDisappear(){
+            disaSave()
         }
+        
+    }
+    func disaSave(){
+            place.strLatitude=maplatitude
+            place.strLongtitude=maplongitude
+            place.zoom=mapzoom
+            place.strLoctionName=mapmodel.name
+        
+
+            saveData()
         
     }
     func save(){
@@ -181,6 +194,8 @@ struct MapView: View {
         maplatitude=mapmodel.latStr
         maplongitude=mapmodel.longStr
         mapmodel.fromLocToAddress()
+
+        
     }
     func upadateViewLoc(){
         maplatitude=mapmodel.latStr
@@ -188,8 +203,10 @@ struct MapView: View {
         place.strLatitude=maplatitude
         place.strLongtitude=maplongitude
         saveData()
-        print("\(maplatitude)3333")
-        print("\(maplongitude)444")
+        
     }
+    
+    
+    
 }
 
