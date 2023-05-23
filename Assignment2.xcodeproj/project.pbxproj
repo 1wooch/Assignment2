@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC00212C2A1D1A7900B319C4 /* timezoneicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC00212B2A1D1A7900B319C4 /* timezoneicon.png */; };
+		DC00212D2A1D1A7900B319C4 /* timezoneicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC00212B2A1D1A7900B319C4 /* timezoneicon.png */; };
 		DC47BCBE2A06746400E5CFCD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47BCBD2A06746400E5CFCD /* MapView.swift */; };
 		DC47BCBF2A06746400E5CFCD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47BCBD2A06746400E5CFCD /* MapView.swift */; };
 		DC47BCC12A06864600E5CFCD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47BCC02A06864600E5CFCD /* DataModel.swift */; };
@@ -34,6 +36,7 @@
 		DCA2205C29FE866A004A3BD9 /* Assignment2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94D98729F7C47600C9745A /* Assignment2App.swift */; };
 		DCA2205D29FE866F004A3BD9 /* Coredata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC94D9B929F908CD00C9745A /* Coredata.xcdatamodeld */; };
 		DCA2205F29FE8B90004A3BD9 /* searchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2205E29FE8B90004A3BD9 /* searchView.swift */; };
+		DCEC37CF2A1CA0F80098BBB0 /* searchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2205E29FE8B90004A3BD9 /* searchView.swift */; };
 		DCF5D1C02A0FE9CF007F12CD /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = DCF5D1BF2A0FE9CF007F12CD /* Documentation.docc */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC00212B2A1D1A7900B319C4 /* timezoneicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timezoneicon.png; path = "../../../../Downloads/icons8-timezone-ios-16-glyph/timezoneicon.png"; sourceTree = "<group>"; };
+		DC00212E2A1D1BB600B319C4 /* timezoneicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timezoneicon.png; sourceTree = "<group>"; };
 		DC47BCBD2A06746400E5CFCD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		DC47BCC02A06864600E5CFCD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		DC60A7FF2A0792FB0054F04B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -103,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC00212A2A1D1A0C00B319C4 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				DC00212B2A1D1A7900B319C4 /* timezoneicon.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		DC47BCBC2A06744A00E5CFCD /* MapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +149,7 @@
 		DC94D98629F7C47600C9745A /* Assignment2 */ = {
 			isa = PBXGroup;
 			children = (
+				DC00212A2A1D1A0C00B319C4 /* resource */,
 				DC94D98729F7C47600C9745A /* Assignment2App.swift */,
 				DC94D9B229F7C59800C9745A /* View */,
 				DC94D9B129F7C58B00C9745A /* Data */,
@@ -213,6 +227,7 @@
 		DC94D9C329F9211F00C9745A /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				DC00212E2A1D1BB600B319C4 /* timezoneicon.png */,
 				DC94D9C429F9212900C9745A /* DetailView.swift */,
 			);
 			path = DetailView;
@@ -325,6 +340,7 @@
 				DC94D98F29F7C47800C9745A /* Preview Assets.xcassets in Resources */,
 				DC94D98C29F7C47800C9745A /* Assets.xcassets in Resources */,
 				DCA2205B29FD9A9F004A3BD9 /* Readme.md in Resources */,
+				DC00212C2A1D1A7900B319C4 /* timezoneicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC00212D2A1D1A7900B319C4 /* timezoneicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +393,7 @@
 				DC47BCC22A06864600E5CFCD /* DataModel.swift in Sources */,
 				DC60A8012A0792FE0054F04B /* MapViewModel.swift in Sources */,
 				DCA2205929FD9093004A3BD9 /* Persistence.swift in Sources */,
+				DCEC37CF2A1CA0F80098BBB0 /* searchView.swift in Sources */,
 				DCA2205829FD9087004A3BD9 /* DetailView.swift in Sources */,
 				DC47BCBF2A06746400E5CFCD /* MapView.swift in Sources */,
 				DC94D99929F7C47800C9745A /* Assignment2Tests.swift in Sources */,

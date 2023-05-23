@@ -73,61 +73,89 @@ struct MapView: View {
     @State var mapzoom=10.0
     @State var maplatitude:String="0.0"
     @State var maplongitude:String="0.0"
-    @State var timeZoneStr:String=""
+    
+    @State var isEditing = false
+
     
     var body: some View {
         
-        VStack{
-            HStack{
-                Text("Address")
-                TextField("",text:$mapmodel.name)
-                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture{
+            VStack(spacing: 0){
+                HStack(spacing: 0){
+                    Text("Address : ")
+                    TextField("",text:$mapmodel.name)
                     
-                    checkAddress()
-                }
-            }
-            HStack{
-                Text("Lat/Long")
-                TextField("",text: $maplatitude)
-                TextField("",text: $maplongitude)
-        
-                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
-                    checkLocation()
-                    place.strLatitude=maplatitude
-                    place.strLongtitude=maplongitude
-                    saveData()
-                }
-            }
-            Slider(value: $mapzoom, in:10...60){
-                if !$0{
-                    place.zoom=mapzoom
-                    saveData()
-                    checkZoom()
-                }
-            }
-            ZStack{
-                Map(coordinateRegion: $mapmodel.region)
-                
-            }
-            VStack(alignment:.center){
-//                Text("TimeZone:\(mapmodel.timeZone)")
-//                Text("sunset: \(mapmodel.sunSet)")
-//                Text("sunrise: \(mapmodel.sunRise)")
-                Text("Latitude:\(mapmodel.region.center.latitude) ")//.font(.footnote)
-                Text("Longitude:\(mapmodel.region.center.longitude) ")//.font(.footnote)
-                Button("Update"){
-                    DispatchQueue.main.async {
+                    Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture{
                         
-                        checkMap()
+                        checkAddress()
                     }
-                    place.strLatitude=maplatitude
-                    place.strLongtitude=maplongitude
-                    place.strLoctionName=mapmodel.name
-                    saveData()
+                }
+                
+                HStack{
+                    VStack{
+                        Text("Latitude")
+                        Text("\(mapmodel.region.center.latitude)")//.font(.footnote)
+                        
+                    }
+                    VStack{
+                        Text("|")
+                        Text("|")
+                    }
+                    VStack{
+                        Text("Longitude")
+                        Text("\(mapmodel.region.center.longitude)")//.font.footnote)
+                    }
+                    //                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
+                    //                    DispatchQueue.main.async {
+                    //                        checkMap()
+                    //                    }
+                    //                    place.strLatitude=maplatitude
+                    //                    place.strLongtitude=maplongitude
+                    //                    place.strLoctionName=mapmodel.name
+                    //                    saveData()
+                    //                }
+                    
+                    
+                    
+                }
+                Slider(value: $mapzoom, in:10...60){
+                    if !$0{
+                        place.zoom=mapzoom
+                        saveData()
+                        checkZoom()
+                    }
+                }
+                ZStack{
+                    Map(coordinateRegion: $mapmodel.region)
+                }
+                if !isEditing{
+                    VStack(alignment: .center){
+                        
+                    }
+                }else{
+                    VStack(alignment:.center){
+                        HStack{
+                            Text("Latitude : ")
+                            TextField("Latitude",text: $maplatitude)
+                            
+                        }
+                        HStack{
+                            Text("Longitude : ")
+                            TextField("Longitude",text: $maplongitude)
+                            Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
+                                checkLocation()
+                                place.strLatitude=maplatitude
+                                place.strLongtitude=maplongitude
+                                saveData()
+                            }
+                        }
+                        
+                        
+                    }
                 }
                 
             }
-        }.padding()
+            .padding(.top, -50)
+        .padding()
         .task {
             checkMap()
         }
@@ -139,27 +167,24 @@ struct MapView: View {
             mapzoom=place.zoom
             maplatitude=place.strLatitude
             maplongitude=place.strLongtitude
-            
-//            mapmodel.fetchTimeZone(maplongitude,maplatitude)
-//            mapmodel.fetchSunriseset(maplongitude, maplatitude)
             checkLocation()
             checkZoom()
             checkMap()
-            
         }.onDisappear(){
             disaSave()
         }
-        
+        .navigationBarItems(trailing: VStack{
+            Button("\(isEditing ? "Confirm":"Edit")"){
+                isEditing.toggle()
+            }
+        })
     }
     func disaSave(){
             place.strLatitude=maplatitude
             place.strLongtitude=maplongitude
             place.zoom=mapzoom
             place.strLoctionName=mapmodel.name
-        
-
             saveData()
-        
     }
     func save(){
         place.strLatitude=maplatitude
@@ -171,9 +196,6 @@ struct MapView: View {
             mapmodel.fromAddressToLocD(upadateViewLoc)
             save()
         }
-        
-
-
     }
     func checkLocation(){
         mapmodel.longStr=maplongitude
@@ -194,8 +216,6 @@ struct MapView: View {
         maplatitude=mapmodel.latStr
         maplongitude=mapmodel.longStr
         mapmodel.fromLocToAddress()
-
-        
     }
     func upadateViewLoc(){
         maplatitude=mapmodel.latStr
@@ -203,10 +223,6 @@ struct MapView: View {
         place.strLatitude=maplatitude
         place.strLongtitude=maplongitude
         saveData()
-        
     }
-    
-    
-    
 }
 

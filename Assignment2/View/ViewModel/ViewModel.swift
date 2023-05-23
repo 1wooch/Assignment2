@@ -102,13 +102,9 @@ extension Places{
         }catch{
             print("error happen while download image \(error)")
         }
-        
         return defaultImage
     }
-    
-    
 }
-
 
 func saveData() {
     let ctx = PersistenceHandler.shared.container.viewContext
@@ -143,7 +139,8 @@ func removePlace(places:[Places]){
 func fetchSunriseset(_ inputLong: String, _ inputLat: String, completion: @escaping ([String]) -> Void) {
     var inputLong = inputLong
     var inputLat = inputLat
-
+    let urlStr2 = "https://api.sunrise-sunset.org/json?lat=\(inputLat)&lng=\(inputLong)"
+    print(urlStr2)
     if let number = Double(inputLong) {
         let decimalLong = String(format: "%.2f", number)
         inputLong = decimalLong
@@ -179,16 +176,14 @@ func fetchSunriseset(_ inputLong: String, _ inputLat: String, completion: @escap
         }
         
     }.resume()
-
-    
-    
 }
 
 func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(String)->Void){
-
         var inputLong = inputLong
         var inputLat = inputLat
-
+    let urlStr2 =
+    "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
+    
         if let number = Double(inputLong) {
             let decimalLong = String(format: "%.2f", number)
             inputLong=decimalLong
@@ -202,11 +197,9 @@ func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(S
         } else {
             print("Invalid input")
         }
-
-
         let urlStr =
         "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
-        guard let url = URL(string: urlStr) else {
+        guard let url = URL(string: urlStr2) else {
             return
         }
         let request = URLRequest(url: url)
@@ -216,7 +209,6 @@ func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(S
                     JSONDecoder().decode(TimeZone.self, from: data)else{
                 return
             }
-
             DispatchQueue.main.async {
                 completion(api.timeZone)
 

@@ -117,7 +117,10 @@ struct DetailView: View {
     var body: some View {
         VStack{
             if !isEditing{
+
                 List{
+                    image.scaledToFit().cornerRadius(20).shadow(radius: 20)
+
                     Text("Name: \(name)")
                     Text("Location name \(locationNameD)")
                     Text("Detail: \(detail)")
@@ -125,21 +128,43 @@ struct DetailView: View {
                     Text("Longtitude: \(place.strLatitude)")
                     Text("Letitude: \(place.strLongtitude)")
                     
-                    Text("Sunrise: \(sunrisestr)")
-                    Text("Sunset: \(sunsetstr)")
-                    Text("TimeZone: \(timezonestr)")
-
-                    
-                    //Text("Url: \(url) ")
                     NavigationLink(destination: MapView(place: place,mapmodel: mapmodel)){
                         HStack{
-                            Map(coordinateRegion: $detailviewRegion//$mapmodel.region
+                            Map(coordinateRegion: $detailviewRegion
                             ).frame(width: 50.0)
                             Text("Edit Map")
                         }
                     }
-                    
-                    image.scaledToFit().cornerRadius(20).shadow(radius: 20)
+                }
+                HStack{
+                    VStack{
+                        Image(systemName: "sunrise.circle")
+                        
+                        Text("Sunrise")
+                        Text(sunrisestr)
+                    }
+                    VStack{
+                        Text("|")
+                        Text("|")
+                        Text("|")
+                    }
+                    VStack{
+                        Image("timezone")
+                        
+                        Text("TimeZone")
+                        Text(timezonestr)
+                    }
+                    VStack{
+                        Text("|")
+                        Text("|")
+                        Text("|")
+
+                    }
+                    VStack{
+                        Image(systemName: "sunset.circle")
+                        Text("Sunset")
+                        Text(sunsetstr)
+                    }
                 }
             }else{
                 List{
@@ -148,9 +173,10 @@ struct DetailView: View {
                     TextField("Longtitude:",text: $longtitude)
                     TextField("Letitude:" ,text:$latitude)
                     TextField("Url:",text: $url)
-                    
                 }
             }
+            
+            
         }
         .navigationTitle("Place Detail")
         .navigationBarItems( trailing:VStack{
@@ -177,10 +203,9 @@ struct DetailView: View {
             url=place.strUrl
             locationNameD=place.strLoctionName
             detailmapdelta=pow(10.0,place.zoom/c1+c2)
-            
             fetchSunriseset(place.strLongtitude,place.strLatitude) { result in
-                sunrisestr=result[0]
-                sunsetstr=result[1]
+                sunrisestr=result[1]
+                sunsetstr=result[0]
             }
             fetchTimeZone(place.strLongtitude, place.strLatitude){
                 result in
@@ -196,7 +221,6 @@ struct DetailView: View {
             place.strDetail=detail
             place.strLatitude=latitude
             place.strLongtitude=longtitude
-            //place.strLoctionName=locationNameD
             place.strUrl=url
             place.timezone=timezonestr
             place.sunset=sunsetstr
