@@ -73,8 +73,13 @@ struct MapView: View {
     @State var mapzoom=10.0
     @State var maplatitude:String="0.0"
     @State var maplongitude:String="0.0"
-    
     @State var isEditing = false
+    
+    //week11
+    @State var wk11region=MKCoordinateRegion(center:CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) , span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0) )
+   // @State var textwk11region = region1
+
+    //
 
     
     var body: some View {
@@ -82,7 +87,7 @@ struct MapView: View {
             VStack(spacing: 0){
                 HStack(spacing: 0){
                     Text("Address : ").border(.black)
-                    TextField("",text:$mapmodel.name).border(.black)
+                    TextField("",text:$mapmodel.name)//.border(.black)
                     
                     Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture{
                         
@@ -113,7 +118,15 @@ struct MapView: View {
                     }
                 }.padding().border(.blue)
                 ZStack{
-                    Map(coordinateRegion: $mapmodel.region)
+                    Map(coordinateRegion: $mapmodel.region).onChange(of: mapmodel.region){
+                        mapmodel.relay.send($0)
+                        print("dsdsd")
+                    }
+                }.onReceive(mapmodel.debouncerPublisher){
+                    checkLocationScrolling()
+                    
+                    saveData()
+                    wk11region=$0
                 }
                 if !isEditing{
                     VStack(alignment: .center){
@@ -142,8 +155,7 @@ struct MapView: View {
                 }
                 
             }
-            .padding(.top, -50)
-        .padding()
+            .padding(.top,-10)
         .task {
             checkMap()
         }
@@ -191,6 +203,14 @@ struct MapView: View {
         mapmodel.fromLocToAddress()
         mapmodel.setupRegion()
         //get the value from coredata and adapt in here
+    }
+    func checkLocationScrolling(){
+        mapmodel.longStr = String( mapmodel.region.center.longitude)
+        mapmodel.latStr=String(mapmodel.region.center.latitude)
+        print(mapmodel.longStr)
+        print(mapmodel.latStr)
+        mapmodel.fromLocToAddress()
+        mapmodel.setupRegion()
     }
     func checkZoom(){
         //mapmodel.updateFromRegion()
