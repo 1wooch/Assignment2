@@ -209,13 +209,14 @@ struct DetailView: View {
         }.onDisappear(){
             place.strName=name
             place.strDetail=detail
-            place.strLatitude=latitude
-            place.strLongtitude=longtitude
+            place.strLatitude=mapmodel.latStr
+            place.strLongtitude=mapmodel.longStr
             place.strUrl=url
             place.timezone=timezonestr
             place.sunset=sunsetstr
             place.sunrise=sunrisestr
             saveData()
+            
         }
         .task {
             await image = place.getImage()

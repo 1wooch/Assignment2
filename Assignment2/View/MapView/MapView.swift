@@ -106,9 +106,6 @@ struct MapView: View {
                         Text("Longitude").bold()
                         Text("\(mapmodel.region.center.longitude)").bold()
                     }.border(.green)
-               
-                    
-                    
                 }
                 Slider(value: $mapzoom, in:10...60){
                     if !$0{
@@ -120,12 +117,11 @@ struct MapView: View {
                 ZStack{
                     Map(coordinateRegion: $mapmodel.region).onChange(of: mapmodel.region){
                         mapmodel.relay.send($0)
-                        print("dsdsd")
                     }
                 }.onReceive(mapmodel.debouncerPublisher){
+                    maplatitude=String(mapmodel.region.center.latitude)
+                    maplongitude=String(mapmodel.region.center.longitude)
                     checkLocationScrolling()
-                    
-                    saveData()
                     wk11region=$0
                 }
                 if !isEditing{
@@ -180,9 +176,15 @@ struct MapView: View {
         })
     }
     func disaSave(){
+        print(maplatitude)
+        print(maplongitude)
             place.strLatitude=maplatitude
+        print(place.strLatitude)
             place.strLongtitude=maplongitude
+        print(place.strLongtitude)
+
             place.zoom=mapzoom
+        print(mapmodel.name)
             place.strLoctionName=mapmodel.name
             saveData()
     }
@@ -207,13 +209,10 @@ struct MapView: View {
     func checkLocationScrolling(){
         mapmodel.longStr = String( mapmodel.region.center.longitude)
         mapmodel.latStr=String(mapmodel.region.center.latitude)
-        print(mapmodel.longStr)
-        print(mapmodel.latStr)
         mapmodel.fromLocToAddress()
         mapmodel.setupRegion()
     }
     func checkZoom(){
-        //mapmodel.updateFromRegion()
         checkMap()
         mapmodel.fromZoomToDelta(mapzoom)
         mapmodel.fromLocToAddress()
