@@ -81,8 +81,8 @@ struct MapView: View {
         
             VStack(spacing: 0){
                 HStack(spacing: 0){
-                    Text("Address : ")
-                    TextField("",text:$mapmodel.name)
+                    Text("Address : ").border(.black)
+                    TextField("",text:$mapmodel.name).border(.black)
                     
                     Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture{
                         
@@ -92,28 +92,16 @@ struct MapView: View {
                 
                 HStack{
                     VStack{
-                        Text("Latitude")
-                        Text("\(mapmodel.region.center.latitude)")//.font(.footnote)
+                        Text("Latitude").bold()
+                        Text("\(mapmodel.region.center.latitude)").bold()
                         
-                    }
+                    }.border(.green)
+                  
                     VStack{
-                        Text("|")
-                        Text("|")
-                    }
-                    VStack{
-                        Text("Longitude")
-                        Text("\(mapmodel.region.center.longitude)")//.font.footnote)
-                    }
-                    //                Image(systemName: "sparkle.magnifyingglass").foregroundColor(.blue).onTapGesture {
-                    //                    DispatchQueue.main.async {
-                    //                        checkMap()
-                    //                    }
-                    //                    place.strLatitude=maplatitude
-                    //                    place.strLongtitude=maplongitude
-                    //                    place.strLoctionName=mapmodel.name
-                    //                    saveData()
-                    //                }
-                    
+                        Text("Longitude").bold()
+                        Text("\(mapmodel.region.center.longitude)").bold()
+                    }.border(.green)
+               
                     
                     
                 }
@@ -123,7 +111,7 @@ struct MapView: View {
                         saveData()
                         checkZoom()
                     }
-                }
+                }.padding().border(.blue)
                 ZStack{
                     Map(coordinateRegion: $mapmodel.region)
                 }
@@ -137,7 +125,7 @@ struct MapView: View {
                             Text("Latitude : ")
                             TextField("Latitude",text: $maplatitude)
                             
-                        }
+                        }.padding().border(.green)
                         HStack{
                             Text("Longitude : ")
                             TextField("Longitude",text: $maplongitude)
@@ -146,8 +134,8 @@ struct MapView: View {
                                 place.strLatitude=maplatitude
                                 place.strLongtitude=maplongitude
                                 saveData()
-                            }
-                        }
+                            }.padding().border(.blue)
+                        }.padding().border(.green)
                         
                         
                     }

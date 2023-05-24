@@ -142,29 +142,19 @@ struct DetailView: View {
                         
                         Text("Sunrise")
                         Text(sunrisestr)
-                    }
-                    VStack{
-                        Text("|")
-                        Text("|")
-                        Text("|")
-                    }
+                    }.padding().border(.orange)
+                   
                     VStack{
                         Image("timezone")
                         
                         Text("TimeZone")
                         Text(timezonestr)
-                    }
-                    VStack{
-                        Text("|")
-                        Text("|")
-                        Text("|")
-
-                    }
+                    }.padding().border(.green)
                     VStack{
                         Image(systemName: "sunset.circle")
                         Text("Sunset")
                         Text(sunsetstr)
-                    }
+                    }.padding().border(.orange)
                 }
             }else{
                 List{
