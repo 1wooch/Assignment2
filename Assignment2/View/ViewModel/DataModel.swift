@@ -26,6 +26,26 @@
                         - Type: MKCoordinateRegion
                         - Usage : togerenate map it store the value for latitude and logintude in region and span is for zooming
  
+ 
+                    - Relay
+                        - Type: PassthroughSubject
+                        - Usage : provides a convenient way to adapt existing imperative code to the Combine model. (ref:https://developer.apple.com/documentation/combine/passthroughsubject)
+ 
+                    - Publisher
+                        - Type: publisher
+                        - Usage : get value and send it to Relay
+                    - MKCoordinateRegion:
+                        - Type: function : Equatable
+                        - Usage : check whether the current longitude and latitude is same and if that is differnt consider it the map has been scrolled by user and do the function.
+                    - timeZone
+                        - Type: String
+                        - Usage : store timezone value as string
+                    - sunRise
+                        - Type: String
+                        - Usage : store sunrise time  value as string
+                    - sunSet
+                        - Type: String
+                        - Usage : store sunset time value as string
      - Procedure:
             N/A
            
@@ -67,12 +87,5 @@ class MapPlace:NSObject, ObservableObject{ //added NSObject for week 11
         debouncerPublisher = relay.debounce(for: 0.5 , scheduler: RunLoop.main)
         super.init()
     }
-    //
-    
-    
-    
-//    init(){
-//
-//    }
-    
+
 }

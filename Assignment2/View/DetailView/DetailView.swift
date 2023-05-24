@@ -45,21 +45,29 @@
                     - locationNameD
                         - Type: String
                         - Usage:Store Location Name 
-
-                     
+                    - detailmapdelta
+                        - Type: double
+                        - Usage:Store mini map delta value
                     - c1,c2
-                    - Type: double
-                    - Usage: calulate material to get map delta.
+                        - Type: double
+                        - Usage: calulate material to get map delta.
  
                     - mapmodel
-                    - Type: MapPlace
-                    - Usage: get mapmodel
+                        - Type: MapPlace
+                        - Usage: get mapmodel
 
                     - detailviewRegion
-                    - Type: MKCoordinateRegion
-                    - Usage:  map value.
-
-
+                        - Type: MKCoordinateRegion
+                        - Usage:  map value.
+                    - sunsetstr
+                        - Type: string
+                        - Usage: string that contain senset value as string.
+                    - sunrisestr
+                        - Type: string
+                        - Usage:string that contain sunrise value as string.
+                    - timezonestr
+                        - Type: string
+                        - Usage:  string that contain timezone value as string.
                                          
  
  
@@ -89,11 +97,10 @@ struct DetailView: View {
     @State var sunrisestr=""
     @State var sunsetstr=""
     @State var timezonestr=""
-    
-    @State var test:[String]=[]
-    
-    
     @State var locationNameD:String=""
+    
+    
+
     @State var detailmapdelta = 20.0
     var c1 = -10.0
     var c2 = 3.5
@@ -104,14 +111,7 @@ struct DetailView: View {
         var timeZone:String
 
     }
-    struct SunriseSunset: Codable {
-        var sunrise: String
-        var sunset: String
-    }
-    struct SunriseSunsetAPI: Codable {
-        var results: SunriseSunset
-        var status:String?
-    }
+
     
     
     var body: some View {
@@ -141,7 +141,10 @@ struct DetailView: View {
                         Image(systemName: "sunrise.circle")
                         
                         Text("Sunrise")
+                        Text("GMT:")
                         Text(sunrisestr)
+                        Text("Local Time: ")
+                        Text(timeConvertToGMT(from: sunrisestr ,to: timezonestr))
                     }.padding().border(.orange)
                    
                     VStack{
@@ -153,7 +156,10 @@ struct DetailView: View {
                     VStack{
                         Image(systemName: "sunset.circle")
                         Text("Sunset")
+                        Text("GMT:")
                         Text(sunsetstr)
+                        Text("Local Time: ")
+                        Text(timeConvertToGMT(from: sunsetstr ,to: timezonestr))
                     }.padding().border(.orange)
                 }
             }else{
@@ -194,8 +200,9 @@ struct DetailView: View {
             locationNameD=place.strLoctionName
             detailmapdelta=pow(10.0,place.zoom/c1+c2)
             fetchSunriseset(place.strLongtitude,place.strLatitude) { result in
-                sunrisestr=result[1]
-                sunsetstr=result[0]
+    
+                sunrisestr=result[0]
+                sunsetstr=result[1]
             }
             fetchTimeZone(place.strLongtitude, place.strLatitude){
                 result in

@@ -181,25 +181,9 @@ func fetchSunriseset(_ inputLong: String, _ inputLat: String, completion: @escap
 func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(String)->Void){
         var inputLong = inputLong
         var inputLat = inputLat
-    let urlStr2 =
-    "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
-    
-        if let number = Double(inputLong) {
-            let decimalLong = String(format: "%.2f", number)
-            inputLong=decimalLong
-            //decimalLongValue=decimalLong
-        } else {
-            print("Invalid input")
-        }
-        if let number = Double(inputLat) {
-             let decimalLat = String(format: "%.2f", number)
-             inputLat=decimalLat
-        } else {
-            print("Invalid input")
-        }
-        let urlStr =
-        "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
-        guard let url = URL(string: urlStr2) else {
+  
+        let urlStr = "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
+        guard let url = URL(string: urlStr) else {
             return
         }
         let request = URLRequest(url: url)
@@ -211,7 +195,29 @@ func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(S
             }
             DispatchQueue.main.async {
                 completion(api.timeZone)
-
+                //print(api.timeZone)
             }
         }.resume()
     }
+
+func timeConvertToGMT(from tm:String, to timezone:String)->String{
+    
+    let inputFormatter = DateFormatter()
+    inputFormatter.dateFormat="h:mm:ss a" // use different format due to input will be "8:24:35 PM" format h= hour mm =minutes  ss = seconds a = pm or am
+    
+
+    inputFormatter.timeZone = Foundation.TimeZone(secondsFromGMT: 0)
+    
+    let outputFormatter = DateFormatter()
+    outputFormatter.dateFormat="h:mm:ss a"
+    outputFormatter.locale=Locale(identifier: "en_US_POSIX")
+    outputFormatter.timeZone = Foundation.TimeZone(identifier: timezone)
+    
+    if let time = inputFormatter.date(from: tm){
+        //print(outputFormatter.string(from: time))
+        return outputFormatter.string(from: time)
+        
+    }
+    return "Error caused in time to GMT"
+    
+}
