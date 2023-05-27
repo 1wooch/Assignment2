@@ -25,8 +25,6 @@
                     - region
                         - Type: MKCoordinateRegion
                         - Usage : togerenate map it store the value for latitude and logintude in region and span is for zooming
- 
- 
                     - Relay
                         - Type: PassthroughSubject
                         - Usage : provides a convenient way to adapt existing imperative code to the Combine model. (ref:https://developer.apple.com/documentation/combine/passthroughsubject)

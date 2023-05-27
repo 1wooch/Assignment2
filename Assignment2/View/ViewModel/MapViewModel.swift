@@ -39,10 +39,7 @@
                     - fromAddressToLocD
                         - Type: Function
                         - Usage : get a address (name) and get a location information (latitude, logitude) and return that value.
- 
- 
- 
-                    - fromAddressTiKic
+                    - fromAddressToLoc
                         - Type: Function
                         - Usage : same as fromAddressToLocD but has async
 
@@ -56,19 +53,6 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-//struct TimeZone:Decodable{
-//    var timeZone:String
-//
-//}
-//struct SunriseSunset: Codable {
-//    var sunrise: String
-//    var sunset: String
-//}
-//struct SunriseSunsetAPI: Codable {
-//    var results: SunriseSunset
-//    var status:String?
-//}
-//
 
 extension MapPlace{
     var latStr:String{
@@ -149,91 +133,5 @@ extension MapPlace{
             self.setupRegion()
         }
      }
-    
-    
-//    func fetchSunriseset(_ inputLong:String, _ inputLat:String){
-//        var inputLong = inputLong
-//        var inputLat = inputLat
-//
-//        if let number = Double(inputLong) {
-//            let decimalLong = String(format: "%.2f", number)
-//            inputLong=decimalLong
-//            //decimalLongValue=decimalLong
-//        } else {
-//            print("Invalid input")
-//        }
-//        if let number = Double(inputLat) {
-//             let decimalLat = String(format: "%.2f", number)
-//             inputLat=decimalLat
-//        } else {
-//            print("Invalid input")
-//        }
-//        let urlStr =
-//        "https://api.sunrise-sunset.org/json?lat=\(inputLat)&lng=\(inputLong)"
-//        print(urlStr)
-//        //{"sunrise":"8:23:05 PM","sunset":"7:05:48 AM","solar_noon":"1:44:26 AM"}
-//        guard let url = URL(string: urlStr) else {
-//            return
-//        }
-//        let request = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: request){
-//            data,_, _ in
-//            guard let data=data, let api=try?
-//                    JSONDecoder().decode(SunriseSunsetAPI.self, from: data)else{
-//                return
-//            }
-//
-//            DispatchQueue.main.async {
-//                self.sunRise=api.results.sunrise
-//                self.sunSet=api.results.sunset
-//
-//            }
-//            print(self.sunSet)
-//            print(self.sunRise)
-//        }.resume()
-//
-//
-//    }
-//    
-//    
-//    func fetchTimeZone(_ inputLong:String, _ inputLat:String){
-//
-//        var inputLong = inputLong
-//        var inputLat = inputLat
-//
-//        if let number = Double(inputLong) {
-//            let decimalLong = String(format: "%.2f", number)
-//            inputLong=decimalLong
-//            //decimalLongValue=decimalLong
-//        } else {
-//            print("Invalid input")
-//        }
-//        if let number = Double(inputLat) {
-//             let decimalLat = String(format: "%.2f", number)
-//             inputLat=decimalLat
-//        } else {
-//            print("Invalid input")
-//        }
-//
-//
-//        let urlStr =
-//        "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
-//        guard let url = URL(string: urlStr) else {
-//            return
-//        }
-//        let request = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: request){
-//            data,_, _ in
-//            guard let data=data, let api=try?
-//                    JSONDecoder().decode(TimeZone.self, from: data)else{
-//                return
-//            }
-//
-//            DispatchQueue.main.async {
-//                self.timeZone=api.timeZone
-//
-//            }
-//        }.resume()
-//    }
 }
 
