@@ -107,10 +107,7 @@ struct DetailView: View {
     @ObservedObject var mapmodel:MapPlace
     @State private var detailviewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
-    struct TimeZone:Decodable{
-        var timeZone:String
-
-    }
+    
 
     
     
@@ -122,7 +119,7 @@ struct DetailView: View {
                     image.scaledToFit().cornerRadius(20).shadow(radius: 20)
 
                     Text("Name: \(name)")
-                    Text("Location name \(locationNameD)")
+                    Text("Location name \(place.strLoctionName)")
                     Text("Detail: \(detail)")
                     
                     Text("Longtitude: \(place.strLatitude)")

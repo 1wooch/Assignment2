@@ -22,10 +22,25 @@
                     - maplongitude
                         - Type: string
                         - Usage:string value for longitude
+                    - isEditing
+                        - Type: Bool
+                        - Usage:Check whether the view is editing mode or not
+ 
+                    - regionSaving
+                        - Type: MKCoordinateRegion
+                        - Usage:store current region inside for check scrolling.
+
  
                     - save
                         - Type: function
                         - Usage:save lonitude and latiude in place model.
+                    - disaSave
+                        - Type: function
+                        - Usage:save lonitude and latiude in place model when the view disappear.
+ 
+                    - checkLocationScrolling
+                         - Type: function
+                         - Usage: check whether the location is moving which means the user scrolling and if it doesn't scroll 0.5 sec run the function inside.
  
                     - checkAddress
                         - Type: function
@@ -57,7 +72,10 @@
             7. if user input Latitude and longitude then it will move to ``checkLocation`` and change the map
             8. if user use the slider then it will change the ``mapzoom`` value
             9. if user click the "Update" button then it will update the ``Logitude`` and ``Latitude``
-           10. Whenever, user left the ``MapView`` it will save data in coredata (latitude, longitude and zoom)
+            10. If user click edit button then it will show up 2 textboxes that user can input longitude and latitude.
+            11. If user input the vlaue in textbox and click button next to Longitude it will update the ``maplongitude`` and ``maplatidue`` value and map too.
+            12. If the user scroll (move) around map and stop, after 0.5 second the map location will be update and show up (name of street or name of place user currently in)
+            13. Whenever, user left the ``MapView`` run ``dissave``and   it will save data in coredata (latitude, longitude, zoom,street name)
  */
 import SwiftUI
 import MapKit
@@ -73,13 +91,13 @@ struct MapView: View {
     @State var mapzoom=10.0
     @State var maplatitude:String="0.0"
     @State var maplongitude:String="0.0"
+    
     @State var isEditing = false
     
     //week11
-    @State var wk11region=MKCoordinateRegion(center:CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) , span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0) )
+    @State var regionSaving=MKCoordinateRegion(center:CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) , span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0) )
    // @State var textwk11region = region1
-
-    //
+    
 
     
     var body: some View {
@@ -118,11 +136,6 @@ struct MapView: View {
                     Map(coordinateRegion: $mapmodel.region).onChange(of: mapmodel.region){
                         mapmodel.relay.send($0)
                     }
-                }.onReceive(mapmodel.debouncerPublisher){
-                    maplatitude=String(mapmodel.region.center.latitude)
-                    maplongitude=String(mapmodel.region.center.longitude)
-                    checkLocationScrolling()
-                    wk11region=$0
                 }
                 if !isEditing{
                     VStack(alignment: .center){
@@ -151,6 +164,12 @@ struct MapView: View {
                 }
                 
             }
+            .onReceive(mapmodel.debouncerPublisher){
+                maplatitude=String(mapmodel.region.center.latitude)
+                maplongitude=String(mapmodel.region.center.longitude)
+                checkLocationScrolling()
+                regionSaving=$0
+            }
             .padding(.top,-10)
         .task {
             checkMap()
@@ -176,15 +195,10 @@ struct MapView: View {
         })
     }
     func disaSave(){
-        print(maplatitude)
-        print(maplongitude)
+       
             place.strLatitude=maplatitude
-        print(place.strLatitude)
             place.strLongtitude=maplongitude
-        print(place.strLongtitude)
-
             place.zoom=mapzoom
-        print(mapmodel.name)
             place.strLoctionName=mapmodel.name
             saveData()
     }

@@ -59,7 +59,6 @@
 
 /* Begin PBXFileReference section */
 		DC00212B2A1D1A7900B319C4 /* timezoneicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timezoneicon.png; path = "../../../../Downloads/icons8-timezone-ios-16-glyph/timezoneicon.png"; sourceTree = "<group>"; };
-		DC00212E2A1D1BB600B319C4 /* timezoneicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timezoneicon.png; sourceTree = "<group>"; };
 		DC47BCBD2A06746400E5CFCD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		DC47BCC02A06864600E5CFCD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		DC60A7FF2A0792FB0054F04B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -227,7 +226,6 @@
 		DC94D9C329F9211F00C9745A /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
-				DC00212E2A1D1BB600B319C4 /* timezoneicon.png */,
 				DC94D9C429F9212900C9745A /* DetailView.swift */,
 			);
 			path = DetailView;

@@ -4,7 +4,88 @@
 //
 //  Created by 최원우 on 26/4/2023.
 //
+/// ## Brief Description
+/// ViewModel
+/**
+     - Type: Model
+     - Element:
+                    - defaultImage
+                        - Type: Image
+                        - Usage : default image for when the image doesn't exist.
+                    - downloadImages
+                        - Type: Image
+                        - Usage : Image download from web if the URL exist for place.
+                    - TimeZone
+                        - Type: Struct
+                        - Usage : struct that contain timezone value as string.
+                    - SunriseSunset
+                        - Type: Struct
+                        - Usage : struct that contain sunrise and sunset 2 different value as string. It is GMT time so need to change into local.
+ 
+                    - SunriseSunsetAPI
+                        - Type: Struct
+                        - Usage : struct that contain sunrise and sunset 2 different value as string. It is GMT time so need to change into local.
+                    -strName
+                        - Type: string
+                        - Usage : string that has name of the place
+ 
+                    -strLocationName
+                        - Type: string
+                        - Usage : string that has name of the  loacation
+                    -strDetail
+                        - Type: string
+                        - Usage : string that has Detail of the place.
+                    -strLatitude
+                        - Type: string
+                        - Usage : string that has Latitude
 
+                    -strLongitude
+                        - Type: string
+                        - Usage : string that has Longitude
+                    -strUrl
+                        - Type: string
+                        - Usage : string that has Url for image
+                    -rowDisplay
+                        - Type: string
+                        - Usage : string that use for display name on main view.
+                    -getImage
+                        - Type: function
+                        - Usage : function that getting image from web.
+                    -saveData
+                        - Type: function
+                        - Usage : function that use save the data in coredata.
+                    -addPlace
+                        - Type: function
+                        - Usage : function that use to add place.
+                    -removePlace
+                        - Type: function
+                        - Usage : function that use remove the place data in coredata. and get input as places (place row ) value
+                    -fetchSunriseset
+                        - Type: function
+                        - Usage : function  that get longitude and latitude as string value, get sunrise and sunset value from api and  return sunset and sunrise array as return
+                    -fetchTimeZone
+                         - Type: function
+                         - Usage : function  that get longitude and latitude as string value, get timezone value from api and  return timezone string as return
+                    -timeConvertToGMT
+                        - Type: function
+                        - Usage : ffunction that takes time value as string and convert it into local time and return that local time as string.
+
+
+
+
+ 
+ 
+
+
+
+
+
+                   
+ 
+     - Procedure:
+            1. get ``strlatitude`` and ``strLongitude`` from ``Places`` coredata
+        
+ */
 import Foundation
 import CoreData
 
@@ -179,8 +260,8 @@ func fetchSunriseset(_ inputLong: String, _ inputLat: String, completion: @escap
 }
 
 func fetchTimeZone(_ inputLong:String, _ inputLat:String, completion:@escaping(String)->Void){
-        var inputLong = inputLong
-        var inputLat = inputLat
+        let inputLong = inputLong
+        let inputLat = inputLat
   
         let urlStr = "https://www.timeapi.io/api/TimeZone/coordinate?latitude=\(inputLat)&longitude=\(inputLong)"
         guard let url = URL(string: urlStr) else {
@@ -207,14 +288,14 @@ func timeConvertToGMT(from tm:String, to timezone:String)->String{
     
 
     inputFormatter.timeZone = Foundation.TimeZone(secondsFromGMT: 0)
-    
     let outputFormatter = DateFormatter()
     outputFormatter.dateFormat="h:mm:ss a"
     outputFormatter.locale=Locale(identifier: "en_US_POSIX")
     outputFormatter.timeZone = Foundation.TimeZone(identifier: timezone)
     
     if let time = inputFormatter.date(from: tm){
-        //print(outputFormatter.string(from: time))
+        print("what was it?")
+        print(outputFormatter.string(from: time))
         return outputFormatter.string(from: time)
         
     }
