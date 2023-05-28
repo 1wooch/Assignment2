@@ -24,6 +24,10 @@ import CoreData
                     - matchs
                         - Type: [places]
                         - Usage: Display matched result.
+                    - mapmodel
+                        - Type: MapPlace
+                        - Usage: getting mapplace model
+                     
                    
      - Procedure:
             1. Get  entered place name by user in the beginning

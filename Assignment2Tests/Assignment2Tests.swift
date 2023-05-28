@@ -90,7 +90,7 @@ final class Assignment2Tests: XCTestCase {
         
         XCTAssert(mapmodel.region.span.longitudeDelta == 100)
     }
+    
+    
 }
-// IMPORTANT&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// REMOVE searchView call in ContentVIew before test
 

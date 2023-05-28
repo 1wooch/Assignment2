@@ -23,12 +23,13 @@ import CoreData
                     - placeName
                         - Type: String
                         - Usage: Display Place Name
-                    - places
-                        - Type: FetchedResults<Places>
+                    - ctx
+                        - Type: @Environment (\.managedObjectContext)
                         - Usage: Get all the coredata Places
-                    - addPlace()
-                        - Type: function
-                        - Usage: add new place
+                    - mapmodel
+                        - Type: @ObservedObject
+                        - Usage: Get all the place model.
+                   
                     - removeItem()
                         - Type: function
                         - Usage: delete one place
@@ -47,11 +48,10 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var ctx //viewcontext
     @FetchRequest(entity:Places.entity() ,sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     var places:FetchedResults<Places>
-    //@State var copyPlaces:Places
+    
     @State var image = defaultImage
     @State var isSearch = false
     @State var placeName:String=""
-    //Map
     @ObservedObject var mapmodel:MapPlace
     
     var body: some View {
@@ -110,19 +110,7 @@ struct ContentView: View {
             )
         }
     }
-//    func addPlace(){
-//        let place = Places(context:ctx)
-//        place.name="New Place"
-//        place.detail=""
-//        saveData()
-//    }
-//    func removeItem(offsets:IndexSet){
-//        for index in offsets{
-//            let place = places[index]
-//            ctx.delete(place)
-//            saveData()
-//        }
-//    }
+
     func removeItem(offsets:IndexSet){
         var plcs:[Places]=[]
         offsets.forEach{
