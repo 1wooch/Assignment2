@@ -133,9 +133,11 @@ struct MapView: View {
                     }
                 }.padding().border(.blue)
                 ZStack{
-                    Map(coordinateRegion: $mapmodel.region).onChange(of: mapmodel.region){
-                        mapmodel.relay.send($0)
-                    }
+                    
+//                    Map(coordinateRegion: $mapmodel.region).onChange(of: mapmodel.region){
+//                        mapmodel.relay.send($0)
+//                    }
+                    
                 }
                 if !isEditing{
                     VStack(alignment: .center){

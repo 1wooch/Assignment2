@@ -22,7 +22,19 @@ In week 9 I've Learnt':
  - Put user location in view map
  - Use MapAnnotation
 
+In week 10 I've Learnt:
+ - What is ARC? (Automatic Reference Counting)
+ - What is Geometry Reader
+ - How can we use Map function
+ - Use of API and how to retrieve data from API -> use it for sunrise and sunset and timezone
 
+In week 11 I've Learnt:
+ - What is Anchor
+ - What is Preference
+ - Reactive -> mapmmovement
+ - How to check memory usage.
+ - Use modify -> Star Sign in Detail view.
+ 
 
  
 The Milestone One has implement: 
@@ -38,7 +50,17 @@ The Milestone Two has implement:
     4. CoreData -> Add Zoom value so the zoom apply to minimap and also user don't need to zoom in when they just get into map view and also store name of street in coredata
     5. because I change the coredata I change when the new coredata added zoom value for new coredata.
     
+The Milestone Three has implement: 
+    1. Detail Model & Detail View -> Use API and get sunset and sunrise time 
+    2. Change GMT time to Local time by using, timezone and GMT time
+    3. Detect the user react and function.
 
 
 Github:
 https://github.com/1wooch/Assignment2
+
+Video Link:
+https://youtu.be/iN4ZSVsi-YU - first video
+
+https://youtu.be/kDbHXFka5IM - Modifier explanation
+

@@ -109,7 +109,14 @@ struct DetailView: View {
 
     
 
-    
+    struct StarM: ViewModifier{
+        func body(content:Content) -> some View{
+            HStack{
+                Image(systemName: "star")
+                content
+            }.padding(3)
+        }
+    }
     
     var body: some View {
         VStack{
@@ -118,7 +125,7 @@ struct DetailView: View {
                 List{
                     image.scaledToFit().cornerRadius(20).shadow(radius: 20)
 
-                    Text("Name: \(name)")
+                    Text("Name: \(name)").modifier(StarM())
                     Text("Location name \(place.strLoctionName)")
                     Text("Detail: \(detail)")
                     

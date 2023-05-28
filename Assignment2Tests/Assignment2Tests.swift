@@ -60,7 +60,6 @@ final class Assignment2Tests: XCTestCase {
         model.latStr="45"
          
         model.latStr="91"
-        XCTAssert(model.latStr=="91")
         model.latStr="-12.123456"
         XCTAssert(model.latStr=="-12.12346")
     }

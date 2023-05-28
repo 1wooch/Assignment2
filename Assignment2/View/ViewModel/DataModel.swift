@@ -59,11 +59,11 @@ import Combine
 //for week 11 stop the map
 typealias Relay = PassthroughSubject<MKCoordinateRegion,Never>
 typealias Publisher = Publishers.Debounce<Relay,RunLoop>
-extension MKCoordinateRegion:Equatable{
-    public static func == (lhs:MKCoordinateRegion,rhs:MKCoordinateRegion)->Bool{
-        lhs.center.latitude==rhs.center.latitude && lhs.center.longitude==rhs.center.longitude
-    }
-}
+//extension MKCoordinateRegion:Equatable{
+//    public static func == (lhs:MKCoordinateRegion,rhs:MKCoordinateRegion)->Bool{
+//        lhs.center.latitude==rhs.center.latitude && lhs.center.longitude==rhs.center.longitude
+//    }
+//}
 //
 
 class MapPlace:NSObject, ObservableObject{ //added NSObject for week 11
